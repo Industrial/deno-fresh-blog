@@ -215,6 +215,7 @@ export type Post = {
   date_updated?: Maybe<Scalars['Date']>;
   date_updated_func?: Maybe<Datetime_Functions>;
   id?: Maybe<Scalars['ID']>;
+  intro?: Maybe<Scalars['String']>;
   slug: Scalars['String'];
   sort?: Maybe<Scalars['Int']>;
   status: Scalars['String'];
@@ -245,6 +246,7 @@ export type Post_Aggregated_Count = {
   date_created?: Maybe<Scalars['Int']>;
   date_updated?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
+  intro?: Maybe<Scalars['Int']>;
   slug?: Maybe<Scalars['Int']>;
   sort?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['Int']>;
@@ -269,6 +271,7 @@ export type Post_Filter = {
   date_updated?: InputMaybe<Date_Filter_Operators>;
   date_updated_func?: InputMaybe<Datetime_Function_Filter_Operators>;
   id?: InputMaybe<Number_Filter_Operators>;
+  intro?: InputMaybe<String_Filter_Operators>;
   slug?: InputMaybe<String_Filter_Operators>;
   sort?: InputMaybe<Number_Filter_Operators>;
   status?: InputMaybe<String_Filter_Operators>;
@@ -306,7 +309,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: Array<{ __typename?: 'post', id?: string | null, title: string, slug: string, content?: string | null, status: string }> };
+export type PostQuery = { __typename?: 'Query', post: Array<{ __typename?: 'post', id?: string | null, title: string, slug: string, intro?: string | null, content?: string | null, status: string, date_created?: any | null }> };
 
 
 export const PostDocument = gql`
@@ -322,8 +325,10 @@ export const PostDocument = gql`
     id
     title
     slug
+    intro
     content
     status
+    date_created
   }
 }
     `;

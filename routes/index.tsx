@@ -17,6 +17,9 @@ export const handler: Handlers<PostQuery["post"]> = {
           _eq: "published",
         },
       },
+      sort: ["-date_created"],
+      limit: 10,
+      offset: 0,
     };
 
     const result = await client.query<PostQuery>({
@@ -48,7 +51,9 @@ export const handler: Handlers<PostQuery["post"]> = {
 export default function Home({ data }: PageProps<PostQuery["post"]>) {
   return (
     <Application>
-      <PostList posts={data} />
+      <div className="mt-0 sm:mt-5 md:mt-10 xl:mt-40">
+        <PostList posts={data} />
+      </div>
     </Application>
   );
 }
