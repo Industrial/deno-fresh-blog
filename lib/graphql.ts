@@ -1,6 +1,9 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-import { API_TOKEN, API_URL } from "#/lib/env.ts";
+import {
+  // API_TOKEN,
+  API_URL,
+} from "#/lib/env.ts";
 
 export const options = {
   uri: API_URL,

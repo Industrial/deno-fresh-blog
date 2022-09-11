@@ -40,16 +40,16 @@ export const handler: Handlers<PostQuery["post"]> = {
 
 export default function Home({ data }: PageProps<Posts>) {
   return (
-    <Application>
-      <div class="p-4 mx-auto max-w-screen-md">
-        {data.map((entry) => {
-          return (
-            <div>
-              {entry.title}
-            </div>
-          );
-        })}
-      </div>
-    </Application>
+    <div class="p-4 mx-auto max-w-screen-md">
+      {
+        /* {data.map((entry) => {
+        return (
+          <div>
+            {entry.title}
+          </div>
+        );
+      })} */
+      }
+    </div>
   );
 }
