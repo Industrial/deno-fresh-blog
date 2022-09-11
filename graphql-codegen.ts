@@ -16,13 +16,14 @@ const config: CodegenConfig = {
       },
     },
   ],
-  // documents: ["./graphql/documents/**/*.graphql"],
+  documents: ["./graphql/documents/**/*.graphql"],
   generates: {
     "./graphql/generated/client.ts": {
       plugins: [
         "typescript",
         "typescript-operations",
-        "typescript-react-query",
+        // "typescript-react-query",
+        "typescript-react-apollo",
       ],
     },
   },

@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "start": "deno run -A --watch=static/,routes/ dev.ts",
+    "start": "deno run -A --unstable --watch=static/,routes/,graphql/generated/ dev.ts",
     "build": "deno task graphql:codegen",
     "graphql:codegen": "pnpm run graphql:codegen"
   },

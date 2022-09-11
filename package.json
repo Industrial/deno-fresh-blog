@@ -17,6 +17,9 @@
     "@graphql-codegen/cli": "^2.12.0",
     "@graphql-codegen/typescript": "2.7.3",
     "@graphql-codegen/typescript-graphql-request": "4.5.4",
+    "@graphql-codegen/typescript-operations": "^2.5.3",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.3",
+    "@graphql-codegen/typescript-react-query": "^4.0.1",
     "@graphql-inspector/config": "^3.3.0",
     "@graphql-inspector/loaders": "^3.3.0",
     "@graphql-tools/utils": "^8.12.0",
@@ -30,8 +33,7 @@
     "yargs": "^17.5.1"
   },
   "dependencies": {
-    "@graphql-codegen/typescript-operations": "^2.5.3",
-    "@graphql-codegen/typescript-react-query": "^4.0.1",
+    "@tanstack/react-query": "^4.3.3",
     "dotenv": "^16.0.2"
   }
 }

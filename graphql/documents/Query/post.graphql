@@ -1,0 +1,22 @@
+query Post(
+  $filter: post_filter,
+  $limit: Int,
+  $offset: Int,
+  $page: Int,
+  $search: String,
+  $sort: [String],
+) {
+  post(
+    filter: $filter,
+    limit: $limit,
+    offset: $offset,
+    page: $page,
+    search: $search,
+    sort: $sort,
+  ) {
+    id
+    title
+    slug
+    content
+  }
+}

@@ -1,14 +1,30 @@
 {
   "imports": {
+    "#/": "./",
     "$fresh/": "https://deno.land/x/fresh@1.1.0/",
-    "preact": "https://esm.sh/preact@10.10.6",
-    "preact/": "https://esm.sh/preact@10.10.6/",
-    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@5.2.3/",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1",
+    "dotenv": "https://deno.land/x/dotenv@v3.2.0/mod.ts",
+    "preact": "https://esm.sh/preact@10.10.6",
+    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@5.2.3/",
+    "preact/": "https://esm.sh/preact@10.10.6/",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
-    "dotenv": "https://deno.land/x/dotenv@v3.2.0/mod.ts",
-    "#/": "./"
+
+    "react": "https://esm.sh/react@18.2.0?dev",
+    "react-dom": "https://esm.sh/react-dom@18.2.0?dev",
+
+    "@apollo/client": "https://esm.sh/@apollo/client@3.6.9",
+    "@wry/context": "https://esm.sh/*@wry/context",
+    "@wry/equality": "https://esm.sh/*@wry/equality",
+    "@wry/trie": "https://esm.sh/*@wry/trie",
+    "graphql": "https://esm.sh/*graphql@16.6.0",
+    "graphql-tag": "https://esm.sh/*graphql-tag",
+    "tslib": "https://esm.sh/*tslib",
+    "optimism": "https://esm.sh/*optimism",
+    "symbol-observable": "https://esm.sh/*symbol-observable",
+    "ts-invariant": "https://esm.sh/*ts-invariant",
+    "ts-invariant/process/index.js": "https://esm.sh/*ts-invariant/process/index.js",
+    "zen-observable-ts": "https://esm.sh/*zen-observable-ts"
   }
 }
