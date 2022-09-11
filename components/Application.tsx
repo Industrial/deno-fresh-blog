@@ -1,4 +1,5 @@
 import { Children } from "#/lib/react.ts";
+import { Navbar } from "#/components/Navbar.tsx";
 
 export type ApplicationProps = {
   children?: Children;
@@ -6,8 +7,11 @@ export type ApplicationProps = {
 
 export const Application = ({ children }: ApplicationProps) => {
   return (
-    <div>
-      {children}
-    </div>
+    <>
+      <Navbar />
+      <div className="container mx-auto">
+        {children}
+      </div>
+    </>
   );
 };

@@ -1,5 +1,11 @@
 import { Options } from "$fresh/plugins/twind.ts";
+import daisyui from "daisyui";
 
-export default {
+const options: Options = {
   selfURL: import.meta.url,
-} as Options;
+  plugins: [
+    daisyui,
+  ],
+};
+
+export default options;
