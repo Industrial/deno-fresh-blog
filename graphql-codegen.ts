@@ -22,6 +22,7 @@ const config: CodegenConfig = {
       plugins: [
         "typescript",
         "typescript-operations",
+        "typescript-react-query",
       ],
     },
   },

@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@graphql-codegen/typescript-operations": "^2.5.3",
+    "@graphql-codegen/typescript-react-query": "^4.0.1",
     "dotenv": "^16.0.2"
   }
 }

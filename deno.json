@@ -1,6 +1,8 @@
 {
   "tasks": {
-    "start": "deno run -A --watch=static/,routes/ dev.ts"
+    "start": "deno run -A --watch=static/,routes/ dev.ts",
+    "build": "deno task graphql:codegen",
+    "graphql:codegen": "pnpm run graphql:codegen"
   },
   "importMap": "./import_map.json",
   "compilerOptions": {

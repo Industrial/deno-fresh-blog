@@ -8,6 +8,7 @@ specifiers:
   '@graphql-codegen/typescript': 2.7.3
   '@graphql-codegen/typescript-graphql-request': 4.5.4
   '@graphql-codegen/typescript-operations': ^2.5.3
+  '@graphql-codegen/typescript-react-query': ^4.0.1
   '@graphql-inspector/config': ^3.3.0
   '@graphql-inspector/loaders': ^3.3.0
   '@graphql-tools/utils': ^8.12.0
@@ -23,6 +24,7 @@ specifiers:
 
 dependencies:
   '@graphql-codegen/typescript-operations': registry.npmjs.org/@graphql-codegen/typescript-operations/2.5.3_graphql@16.6.0
+  '@graphql-codegen/typescript-react-query': registry.npmjs.org/@graphql-codegen/typescript-react-query/4.0.1_graphql@16.6.0
   dotenv: registry.npmjs.org/dotenv/16.0.2
 
 devDependencies:
@@ -1058,6 +1060,25 @@ packages:
       '@graphql-codegen/typescript': registry.npmjs.org/@graphql-codegen/typescript/2.7.3_graphql@16.6.0
       '@graphql-codegen/visitor-plugin-common': registry.npmjs.org/@graphql-codegen/visitor-plugin-common/2.12.1_graphql@16.6.0
       auto-bind: registry.npmjs.org/auto-bind/4.0.0
+      graphql: registry.npmjs.org/graphql/16.6.0
+      tslib: registry.npmjs.org/tslib/2.4.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
+  registry.npmjs.org/@graphql-codegen/typescript-react-query/4.0.1_graphql@16.6.0:
+    resolution: {integrity: sha512-vA8cZqlvBoQ+muNycAzWVq8Nthr+AM1OWIuGpYfE3QSe9sqbaXAuXJgm9ZmBQ/tq2M8z8pAwm/z5MOJ7GcUcgg==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@graphql-codegen/typescript-react-query/-/typescript-react-query-4.0.1.tgz}
+    id: registry.npmjs.org/@graphql-codegen/typescript-react-query/4.0.1
+    name: '@graphql-codegen/typescript-react-query'
+    version: 4.0.1
+    peerDependencies:
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@graphql-codegen/plugin-helpers': registry.npmjs.org/@graphql-codegen/plugin-helpers/2.7.0_graphql@16.6.0
+      '@graphql-codegen/visitor-plugin-common': registry.npmjs.org/@graphql-codegen/visitor-plugin-common/2.12.1_graphql@16.6.0
+      auto-bind: registry.npmjs.org/auto-bind/4.0.0
+      change-case-all: registry.npmjs.org/change-case-all/1.0.14
       graphql: registry.npmjs.org/graphql/16.6.0
       tslib: registry.npmjs.org/tslib/2.4.0
     transitivePeerDependencies:
