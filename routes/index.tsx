@@ -2,14 +2,12 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 
 import { Application } from "#/components/Application.tsx";
 import {
-  Post,
   PostDocument,
   PostQuery,
   PostQueryVariables,
 } from "#/graphql/generated/client.ts";
 import { client } from "#/lib/graphql.ts";
-
-export type Posts = Array<Post>;
+import { PostList } from "#/components/PostList.tsx";
 
 export const handler: Handlers<PostQuery["post"]> = {
   async GET(_req, ctx) {
@@ -47,31 +45,10 @@ export const handler: Handlers<PostQuery["post"]> = {
   },
 };
 
-const PostList = () => {
-  return (
-    <section class="text-gray-600">
-      <div class="container px-5 py-24 mx-auto">
-        <div class="-my-8 divide-y-2 divide-gray-100">
-          lol
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default function Home({ data }: PageProps<Posts>) {
+export default function Home({ data }: PageProps<PostQuery["post"]>) {
   return (
     <Application>
-      <PostList />
-      <div class="p-4 mx-auto max-w-screen-md">
-        {data.map((entry) => {
-          return (
-            <div>
-              {entry.title}
-            </div>
-          );
-        })}
-      </div>
+      <PostList posts={data} />
     </Application>
   );
 }
