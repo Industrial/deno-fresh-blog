@@ -25,10 +25,19 @@ export const handler: Handlers<PostQuery["post"]> = {
       variables,
     });
 
-    if (result.error || result.errors && result.errors[0]) {
-      throw new Error(
-        result.error?.message || result.errors && result.errors[0].message,
+    const error = result.error || result.errors?.length && result.errors[0];
+
+    if (error) {
+      const newError = new Error(
+        error.message,
+        {
+          cause: error.cause,
+        },
       );
+
+      console.error(newError);
+
+      throw newError;
     }
 
     const posts = result.data.post;
