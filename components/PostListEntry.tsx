@@ -23,21 +23,23 @@ function Photo({ post }: PostListEntryProps) {
 
 function Description({ post }: PostListEntryProps) {
   return (
-    <div className="flex-1 flex mt-1 mb-5">
-      <div className="flex-1 flex flex-col p-1 xl:p-16">
-        <div className="flex-1">
+    <div className="flex-1 flex mt-1 md:mt-0 mb-5 md:mb-0">
+      <div className="flex-1 flex flex-col p-1 xl:pl-16 xl:pr-0 xl:pt-0 xl:pb-0 justify-start">
+        <div className="">
           {formatDate(new Date(post.date_created))}
         </div>
-        <div className="flex-1 font-bold text-2xl">
+        <div className="font-bold text-2xl">
           <a href={`/post/${post.slug}`}>
             {post.title}
           </a>
         </div>
-        <div className="flex-1">
+        <div className="">
           {post.intro || post.content}
         </div>
-        <div className="flex-1">
-          <a href={`/post/${post.slug}`}>Read more</a>
+        <div className="">
+          <a href={`/post/${post.slug}`} className="text-underline">
+            Read more
+          </a>
         </div>
       </div>
     </div>
