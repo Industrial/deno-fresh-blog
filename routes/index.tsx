@@ -1,4 +1,4 @@
-import Counter from "../islands/Counter.tsx";
+import Counter from "#/islands/Counter.tsx";
 
 export default function Home() {
   return (
