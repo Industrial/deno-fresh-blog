@@ -12,18 +12,18 @@ export type Posts = Array<Post>;
 
 export const handler: Handlers<PostQuery["post"]> = {
   async GET(_req, ctx) {
-    const variables: PostQueryVariables = {
-      filter: {
-        status: {
-          _eq: "published",
-        },
-      },
-    };
+    // const variables: PostQueryVariables = {
+    //   filter: {
+    //     status: {
+    //       _eq: "published",
+    //     },
+    //   },
+    // };
 
-    const result = await client.query<PostQuery>({
-      query: PostDocument,
-      variables,
-    });
+    // const result = await client.query<PostQuery>({
+    //   query: PostDocument,
+    //   variables,
+    // });
 
     // const error = result.error || result.errors?.length && result.errors[0];
 
@@ -40,7 +40,8 @@ export const handler: Handlers<PostQuery["post"]> = {
     //   throw newError;
     // }
 
-    const posts = result.data.post;
+    // const posts = result.data.post;
+    const posts = [];
 
     return ctx.render(posts);
   },
