@@ -1,0 +1,36 @@
+{
+  "name": "test-fresh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "graphql:codegen": "graphql-codegen --config ./graphql-codegen.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@graphql-cli/codegen": "2.4.0",
+    "@graphql-cli/coverage": "2.1.0",
+    "@graphql-cli/validate": "2.1.0",
+    "@graphql-codegen/cli": "^2.12.0",
+    "@graphql-codegen/typescript": "2.7.3",
+    "@graphql-codegen/typescript-graphql-request": "4.5.4",
+    "@graphql-inspector/config": "^3.3.0",
+    "@graphql-inspector/loaders": "^3.3.0",
+    "@graphql-tools/utils": "^8.12.0",
+    "@types/node": "^18.7.16",
+    "graphql": "^16.6.0",
+    "graphql-config": "^4.3.5",
+    "graphql-request": "^5.0.0",
+    "graphql-tag": "^2.12.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3",
+    "yargs": "^17.5.1"
+  },
+  "dependencies": {
+    "@graphql-codegen/typescript-operations": "^2.5.3",
+    "dotenv": "^16.0.2"
+  }
+}
