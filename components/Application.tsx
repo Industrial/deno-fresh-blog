@@ -1,5 +1,3 @@
-import { ApolloProvider } from "@apollo/client";
-import { client } from "#/lib/graphql.ts";
 import { Children } from "#/lib/react.ts";
 
 export type ApplicationProps = {
@@ -8,8 +6,8 @@ export type ApplicationProps = {
 
 export const Application = ({ children }: ApplicationProps) => {
   return (
-    <ApolloProvider client={client}>
+    <div>
       {children}
-    </ApolloProvider>
+    </div>
   );
 };

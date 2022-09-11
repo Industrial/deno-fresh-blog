@@ -2,10 +2,16 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 import { API_TOKEN, API_URL } from "#/lib/env.ts";
 
-export const client = new ApolloClient({
+export const options = {
   uri: API_URL,
-  headers: {
-    Authorization: `Bearer ${API_TOKEN}`,
-  },
+  // headers: {
+  //   authorization: `Bearer ${API_TOKEN}`,
+  // },
+};
+
+console.log("options", options);
+
+export const client = new ApolloClient({
+  ...options,
   cache: new InMemoryCache(),
 });

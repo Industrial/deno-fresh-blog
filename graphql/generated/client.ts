@@ -1,16 +1,10 @@
-import { gql } from "@apollo/client";
-import * as Apollo from "@apollo/client";
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> =
-  & Omit<T, K>
-  & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> =
-  & Omit<T, K>
-  & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -25,7 +19,7 @@ export type Scalars = {
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   comment: Array<Comment>;
   comment_aggregated: Array<Comment_Aggregated>;
   comment_by_id?: Maybe<Comment>;
@@ -34,79 +28,86 @@ export type Query = {
   post_by_id?: Maybe<Post>;
 };
 
+
 export type QueryCommentArgs = {
   filter?: InputMaybe<Comment_Filter>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  page?: InputMaybe<Scalars["Int"]>;
-  search?: InputMaybe<Scalars["String"]>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  search?: InputMaybe<Scalars['String']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
 
 export type QueryComment_AggregatedArgs = {
   filter?: InputMaybe<Comment_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  search?: InputMaybe<Scalars["String"]>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  search?: InputMaybe<Scalars['String']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryComment_By_IdArgs = {
-  id: Scalars["ID"];
+  id: Scalars['ID'];
 };
+
 
 export type QueryPostArgs = {
   filter?: InputMaybe<Post_Filter>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  page?: InputMaybe<Scalars["Int"]>;
-  search?: InputMaybe<Scalars["String"]>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  search?: InputMaybe<Scalars['String']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
 
 export type QueryPost_AggregatedArgs = {
   filter?: InputMaybe<Post_Filter>;
-  groupBy?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  search?: InputMaybe<Scalars["String"]>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  groupBy?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  search?: InputMaybe<Scalars['String']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryPost_By_IdArgs = {
-  id: Scalars["ID"];
+  id: Scalars['ID'];
 };
 
 export type Comment = {
-  __typename?: "comment";
-  content: Scalars["String"];
-  date_created?: Maybe<Scalars["Date"]>;
+  __typename?: 'comment';
+  content: Scalars['String'];
+  date_created?: Maybe<Scalars['Date']>;
   date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars["Date"]>;
+  date_updated?: Maybe<Scalars['Date']>;
   date_updated_func?: Maybe<Datetime_Functions>;
-  email: Scalars["String"];
-  id?: Maybe<Scalars["ID"]>;
+  email: Scalars['String'];
+  id?: Maybe<Scalars['ID']>;
   post?: Maybe<Post>;
-  user_created?: Maybe<Scalars["String"]>;
-  user_updated?: Maybe<Scalars["String"]>;
+  user_created?: Maybe<Scalars['String']>;
+  user_updated?: Maybe<Scalars['String']>;
 };
+
 
 export type CommentPostArgs = {
   filter?: InputMaybe<Post_Filter>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  page?: InputMaybe<Scalars["Int"]>;
-  search?: InputMaybe<Scalars["String"]>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  search?: InputMaybe<Scalars['String']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type Comment_Aggregated = {
-  __typename?: "comment_aggregated";
+  __typename?: 'comment_aggregated';
   avg?: Maybe<Comment_Aggregated_Fields>;
   avgDistinct?: Maybe<Comment_Aggregated_Fields>;
   count?: Maybe<Comment_Aggregated_Count>;
-  countAll?: Maybe<Scalars["Int"]>;
+  countAll?: Maybe<Scalars['Int']>;
   countDistinct?: Maybe<Comment_Aggregated_Count>;
-  group?: Maybe<Scalars["JSON"]>;
+  group?: Maybe<Scalars['JSON']>;
   max?: Maybe<Comment_Aggregated_Fields>;
   min?: Maybe<Comment_Aggregated_Fields>;
   sum?: Maybe<Comment_Aggregated_Fields>;
@@ -114,21 +115,21 @@ export type Comment_Aggregated = {
 };
 
 export type Comment_Aggregated_Count = {
-  __typename?: "comment_aggregated_count";
-  content?: Maybe<Scalars["Int"]>;
-  date_created?: Maybe<Scalars["Int"]>;
-  date_updated?: Maybe<Scalars["Int"]>;
-  email?: Maybe<Scalars["Int"]>;
-  id?: Maybe<Scalars["Int"]>;
-  post?: Maybe<Scalars["Int"]>;
-  user_created?: Maybe<Scalars["Int"]>;
-  user_updated?: Maybe<Scalars["Int"]>;
+  __typename?: 'comment_aggregated_count';
+  content?: Maybe<Scalars['Int']>;
+  date_created?: Maybe<Scalars['Int']>;
+  date_updated?: Maybe<Scalars['Int']>;
+  email?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  post?: Maybe<Scalars['Int']>;
+  user_created?: Maybe<Scalars['Int']>;
+  user_updated?: Maybe<Scalars['Int']>;
 };
 
 export type Comment_Aggregated_Fields = {
-  __typename?: "comment_aggregated_fields";
-  id?: Maybe<Scalars["Float"]>;
-  post?: Maybe<Scalars["Float"]>;
+  __typename?: 'comment_aggregated_fields';
+  id?: Maybe<Scalars['Float']>;
+  post?: Maybe<Scalars['Float']>;
 };
 
 export type Comment_Filter = {
@@ -151,21 +152,21 @@ export type Count_Function_Filter_Operators = {
 };
 
 export type Count_Functions = {
-  __typename?: "count_functions";
-  count?: Maybe<Scalars["Int"]>;
+  __typename?: 'count_functions';
+  count?: Maybe<Scalars['Int']>;
 };
 
 export type Date_Filter_Operators = {
-  _between?: InputMaybe<Array<InputMaybe<Scalars["GraphQLStringOrFloat"]>>>;
-  _eq?: InputMaybe<Scalars["String"]>;
-  _gt?: InputMaybe<Scalars["String"]>;
-  _gte?: InputMaybe<Scalars["String"]>;
-  _lt?: InputMaybe<Scalars["String"]>;
-  _lte?: InputMaybe<Scalars["String"]>;
-  _nbetween?: InputMaybe<Array<InputMaybe<Scalars["GraphQLStringOrFloat"]>>>;
-  _neq?: InputMaybe<Scalars["String"]>;
-  _nnull?: InputMaybe<Scalars["Boolean"]>;
-  _null?: InputMaybe<Scalars["Boolean"]>;
+  _between?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
+  _eq?: InputMaybe<Scalars['String']>;
+  _gt?: InputMaybe<Scalars['String']>;
+  _gte?: InputMaybe<Scalars['String']>;
+  _lt?: InputMaybe<Scalars['String']>;
+  _lte?: InputMaybe<Scalars['String']>;
+  _nbetween?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
+  _neq?: InputMaybe<Scalars['String']>;
+  _nnull?: InputMaybe<Scalars['Boolean']>;
+  _null?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type Datetime_Function_Filter_Operators = {
@@ -180,58 +181,58 @@ export type Datetime_Function_Filter_Operators = {
 };
 
 export type Datetime_Functions = {
-  __typename?: "datetime_functions";
-  day?: Maybe<Scalars["Int"]>;
-  hour?: Maybe<Scalars["Int"]>;
-  minute?: Maybe<Scalars["Int"]>;
-  month?: Maybe<Scalars["Int"]>;
-  second?: Maybe<Scalars["Int"]>;
-  week?: Maybe<Scalars["Int"]>;
-  weekday?: Maybe<Scalars["Int"]>;
-  year?: Maybe<Scalars["Int"]>;
+  __typename?: 'datetime_functions';
+  day?: Maybe<Scalars['Int']>;
+  hour?: Maybe<Scalars['Int']>;
+  minute?: Maybe<Scalars['Int']>;
+  month?: Maybe<Scalars['Int']>;
+  second?: Maybe<Scalars['Int']>;
+  week?: Maybe<Scalars['Int']>;
+  weekday?: Maybe<Scalars['Int']>;
+  year?: Maybe<Scalars['Int']>;
 };
 
 export type Number_Filter_Operators = {
-  _between?: InputMaybe<Array<InputMaybe<Scalars["GraphQLStringOrFloat"]>>>;
-  _eq?: InputMaybe<Scalars["GraphQLStringOrFloat"]>;
-  _gt?: InputMaybe<Scalars["GraphQLStringOrFloat"]>;
-  _gte?: InputMaybe<Scalars["GraphQLStringOrFloat"]>;
-  _in?: InputMaybe<Array<InputMaybe<Scalars["GraphQLStringOrFloat"]>>>;
-  _lt?: InputMaybe<Scalars["GraphQLStringOrFloat"]>;
-  _lte?: InputMaybe<Scalars["GraphQLStringOrFloat"]>;
-  _nbetween?: InputMaybe<Array<InputMaybe<Scalars["GraphQLStringOrFloat"]>>>;
-  _neq?: InputMaybe<Scalars["GraphQLStringOrFloat"]>;
-  _nin?: InputMaybe<Array<InputMaybe<Scalars["GraphQLStringOrFloat"]>>>;
-  _nnull?: InputMaybe<Scalars["Boolean"]>;
-  _null?: InputMaybe<Scalars["Boolean"]>;
+  _between?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
+  _eq?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
+  _gt?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
+  _gte?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
+  _in?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
+  _lt?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
+  _lte?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
+  _nbetween?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
+  _neq?: InputMaybe<Scalars['GraphQLStringOrFloat']>;
+  _nin?: InputMaybe<Array<InputMaybe<Scalars['GraphQLStringOrFloat']>>>;
+  _nnull?: InputMaybe<Scalars['Boolean']>;
+  _null?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type Post = {
-  __typename?: "post";
-  content?: Maybe<Scalars["String"]>;
-  date_created?: Maybe<Scalars["Date"]>;
+  __typename?: 'post';
+  content?: Maybe<Scalars['String']>;
+  date_created?: Maybe<Scalars['Date']>;
   date_created_func?: Maybe<Datetime_Functions>;
-  date_updated?: Maybe<Scalars["Date"]>;
+  date_updated?: Maybe<Scalars['Date']>;
   date_updated_func?: Maybe<Datetime_Functions>;
-  id?: Maybe<Scalars["ID"]>;
-  slug: Scalars["String"];
-  sort?: Maybe<Scalars["Int"]>;
-  status: Scalars["String"];
-  tags?: Maybe<Scalars["JSON"]>;
+  id?: Maybe<Scalars['ID']>;
+  slug: Scalars['String'];
+  sort?: Maybe<Scalars['Int']>;
+  status: Scalars['String'];
+  tags?: Maybe<Scalars['JSON']>;
   tags_func?: Maybe<Count_Functions>;
-  title: Scalars["String"];
-  user_created?: Maybe<Scalars["String"]>;
-  user_updated?: Maybe<Scalars["String"]>;
+  title: Scalars['String'];
+  user_created?: Maybe<Scalars['String']>;
+  user_updated?: Maybe<Scalars['String']>;
 };
 
 export type Post_Aggregated = {
-  __typename?: "post_aggregated";
+  __typename?: 'post_aggregated';
   avg?: Maybe<Post_Aggregated_Fields>;
   avgDistinct?: Maybe<Post_Aggregated_Fields>;
   count?: Maybe<Post_Aggregated_Count>;
-  countAll?: Maybe<Scalars["Int"]>;
+  countAll?: Maybe<Scalars['Int']>;
   countDistinct?: Maybe<Post_Aggregated_Count>;
-  group?: Maybe<Scalars["JSON"]>;
+  group?: Maybe<Scalars['JSON']>;
   max?: Maybe<Post_Aggregated_Fields>;
   min?: Maybe<Post_Aggregated_Fields>;
   sum?: Maybe<Post_Aggregated_Fields>;
@@ -239,24 +240,24 @@ export type Post_Aggregated = {
 };
 
 export type Post_Aggregated_Count = {
-  __typename?: "post_aggregated_count";
-  content?: Maybe<Scalars["Int"]>;
-  date_created?: Maybe<Scalars["Int"]>;
-  date_updated?: Maybe<Scalars["Int"]>;
-  id?: Maybe<Scalars["Int"]>;
-  slug?: Maybe<Scalars["Int"]>;
-  sort?: Maybe<Scalars["Int"]>;
-  status?: Maybe<Scalars["Int"]>;
-  tags?: Maybe<Scalars["Int"]>;
-  title?: Maybe<Scalars["Int"]>;
-  user_created?: Maybe<Scalars["Int"]>;
-  user_updated?: Maybe<Scalars["Int"]>;
+  __typename?: 'post_aggregated_count';
+  content?: Maybe<Scalars['Int']>;
+  date_created?: Maybe<Scalars['Int']>;
+  date_updated?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  slug?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['Int']>;
+  tags?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['Int']>;
+  user_created?: Maybe<Scalars['Int']>;
+  user_updated?: Maybe<Scalars['Int']>;
 };
 
 export type Post_Aggregated_Fields = {
-  __typename?: "post_aggregated_fields";
-  id?: Maybe<Scalars["Float"]>;
-  sort?: Maybe<Scalars["Float"]>;
+  __typename?: 'post_aggregated_fields';
+  id?: Maybe<Scalars['Float']>;
+  sort?: Maybe<Scalars['Float']>;
 };
 
 export type Post_Filter = {
@@ -279,45 +280,34 @@ export type Post_Filter = {
 };
 
 export type String_Filter_Operators = {
-  _contains?: InputMaybe<Scalars["String"]>;
-  _empty?: InputMaybe<Scalars["Boolean"]>;
-  _ends_with?: InputMaybe<Scalars["String"]>;
-  _eq?: InputMaybe<Scalars["String"]>;
-  _in?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
-  _ncontains?: InputMaybe<Scalars["String"]>;
-  _nempty?: InputMaybe<Scalars["Boolean"]>;
-  _nends_with?: InputMaybe<Scalars["String"]>;
-  _neq?: InputMaybe<Scalars["String"]>;
-  _nin?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
-  _nnull?: InputMaybe<Scalars["Boolean"]>;
-  _nstarts_with?: InputMaybe<Scalars["String"]>;
-  _null?: InputMaybe<Scalars["Boolean"]>;
-  _starts_with?: InputMaybe<Scalars["String"]>;
+  _contains?: InputMaybe<Scalars['String']>;
+  _empty?: InputMaybe<Scalars['Boolean']>;
+  _ends_with?: InputMaybe<Scalars['String']>;
+  _eq?: InputMaybe<Scalars['String']>;
+  _in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  _ncontains?: InputMaybe<Scalars['String']>;
+  _nempty?: InputMaybe<Scalars['Boolean']>;
+  _nends_with?: InputMaybe<Scalars['String']>;
+  _neq?: InputMaybe<Scalars['String']>;
+  _nin?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  _nnull?: InputMaybe<Scalars['Boolean']>;
+  _nstarts_with?: InputMaybe<Scalars['String']>;
+  _null?: InputMaybe<Scalars['Boolean']>;
+  _starts_with?: InputMaybe<Scalars['String']>;
 };
 
 export type PostQueryVariables = Exact<{
   filter?: InputMaybe<Post_Filter>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  page?: InputMaybe<Scalars["Int"]>;
-  search?: InputMaybe<Scalars["String"]>;
-  sort?: InputMaybe<
-    Array<InputMaybe<Scalars["String"]>> | InputMaybe<Scalars["String"]>
-  >;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  search?: InputMaybe<Scalars['String']>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>>;
 }>;
 
-export type PostQuery = {
-  __typename?: "Query";
-  post: Array<
-    {
-      __typename?: "post";
-      id?: string | null;
-      title: string;
-      slug: string;
-      content?: string | null;
-    }
-  >;
-};
+
+export type PostQuery = { __typename?: 'Query', post: Array<{ __typename?: 'post', id?: string | null, title: string, slug: string, content?: string | null, status: string }> };
+
 
 export const PostDocument = gql`
     query Post($filter: post_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]) {
@@ -333,6 +323,7 @@ export const PostDocument = gql`
     title
     slug
     content
+    status
   }
 }
     `;
@@ -358,21 +349,14 @@ export const PostDocument = gql`
  *   },
  * });
  */
-export function usePostQuery(
-  baseOptions?: Apollo.QueryHookOptions<PostQuery, PostQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<PostQuery, PostQueryVariables>(PostDocument, options);
-}
-export function usePostLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<PostQuery, PostQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<PostQuery, PostQueryVariables>(
-    PostDocument,
-    options,
-  );
-}
+export function usePostQuery(baseOptions?: Apollo.QueryHookOptions<PostQuery, PostQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PostQuery, PostQueryVariables>(PostDocument, options);
+      }
+export function usePostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostQuery, PostQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PostQuery, PostQueryVariables>(PostDocument, options);
+        }
 export type PostQueryHookResult = ReturnType<typeof usePostQuery>;
 export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
 export type PostQueryResult = Apollo.QueryResult<PostQuery, PostQueryVariables>;

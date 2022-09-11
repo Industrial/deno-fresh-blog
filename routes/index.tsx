@@ -1,56 +1,54 @@
-import { Handlers } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 
-import Counter from "#/islands/Counter.tsx";
 import { Application } from "#/components/Application.tsx";
 import {
   Post,
   PostDocument,
   PostQuery,
-  usePostQuery,
+  PostQueryVariables,
 } from "#/graphql/generated/client.ts";
 import { client } from "#/lib/graphql.ts";
 
 export type Posts = Array<Post>;
 
-export const handler: Handlers<Posts> = {
+export const handler: Handlers<PostQuery["post"]> = {
   async GET(_req, ctx) {
+    const variables: PostQueryVariables = {
+      filter: {
+        status: {
+          _eq: "published",
+        },
+      },
+    };
+
     const result = await client.query<PostQuery>({
       query: PostDocument,
-      // variables: {
-      // }
+      variables,
     });
 
-    console.log("result", result);
+    if (result.error || result.errors && result.errors[0]) {
+      throw new Error(
+        result.error?.message || result.errors && result.errors[0].message,
+      );
+    }
 
-    return ctx.render([]);
+    const posts = result.data.post;
+
+    return ctx.render(posts);
   },
 };
 
-export default function Home() {
-  const { loading, error, data } = usePostQuery();
-
-  if (loading) {
-    return <h1>Loading</h1>;
-  }
-
-  if (error) {
-    return <h1>ERROR</h1>;
-  }
-
+export default function Home({ data }: PageProps<Posts>) {
   return (
     <Application>
       <div class="p-4 mx-auto max-w-screen-md">
-        <img
-          src="/logo.svg"
-          class="w-32 h-32"
-          alt="the fresh logo: a sliced lemon dripping with juice"
-        />
-        <p class="my-6">
-          <pre>
-            {JSON.stringify(data)}
-          </pre>
-        </p>
-        <Counter start={3} />
+        {data.map((entry) => {
+          return (
+            <div>
+              {entry.title}
+            </div>
+          );
+        })}
       </div>
     </Application>
   );

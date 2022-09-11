@@ -14,7 +14,7 @@
     "react": "https://esm.sh/react@18.2.0?dev",
     "react-dom": "https://esm.sh/react-dom@18.2.0?dev",
 
-    "@apollo/client": "https://esm.sh/@apollo/client@3.6.9",
+    "@apollo/client": "https://esm.sh/@apollo/client@3.6.9?dev&deps=react@18.2.0,react-dom@18.2.0",
     "@wry/context": "https://esm.sh/*@wry/context",
     "@wry/equality": "https://esm.sh/*@wry/equality",
     "@wry/trie": "https://esm.sh/*@wry/trie",
