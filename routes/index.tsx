@@ -7,7 +7,7 @@ import {
   PostQueryVariables,
 } from "#/graphql/generated/client.ts";
 import { client, handleQueryResult } from "#/lib/graphql.ts";
-import { PostList } from "#/components/PostList.tsx";
+import { PostList } from "#/components/page/blog/PostList.tsx";
 
 export const handler: Handlers<PostQuery["post"]> = {
   async GET(_req, ctx) {

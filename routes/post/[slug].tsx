@@ -7,7 +7,7 @@ import {
 } from "#/graphql/generated/client.ts";
 import { Application } from "#/components/Application.tsx";
 import { ArrayElement } from "#/lib/types.ts";
-import { PostView } from "#/components/PostView.tsx";
+import { PostView } from "#/components/page/blog/PostView.tsx";
 import { client, handleQueryResult } from "#/lib/graphql.ts";
 
 export type Post = ArrayElement<PostQuery["post"]>;

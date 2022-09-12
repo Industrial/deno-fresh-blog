@@ -1,5 +1,5 @@
 import { Container } from "#/components/Container.tsx";
-import { PostListEntry } from "#/components/PostListEntry.tsx";
+import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
 
 export type PostListProps = {
