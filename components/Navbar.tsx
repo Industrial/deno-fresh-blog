@@ -4,7 +4,7 @@ import { withClassNames } from "#/lib/classNames.ts";
 export function Navbar() {
   return (
     <Router.Consumer>
-      {({ params, route, url }) => {
+      {({ route }) => {
         return (
           <div className="flex justify-center items-center h-20 bg-blue-400 text-white">
             <a
