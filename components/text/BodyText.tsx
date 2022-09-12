@@ -1,8 +1,6 @@
-import { Children } from "#/lib/react.ts";
+import { ChildrenProps } from "#/lib/children.ts";
 
-export type BodyTextProps = {
-  children?: Children;
-};
+export type BodyTextProps = ChildrenProps;
 
 export function BodyText({ children }: BodyTextProps) {
   return (

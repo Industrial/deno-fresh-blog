@@ -1,9 +1,10 @@
-import { markdownToHTML } from "#/lib/markdown.ts";
 import { useMemo } from "preact/hooks";
 
-export type MarkdownProps = {
+import { ClassNameProps, withClassNames } from "#/lib/classNames.ts";
+import { markdownToHTML } from "#/lib/markdown.ts";
+
+export type MarkdownProps = ClassNameProps & {
   text: string;
-  className?: string;
 };
 
 export function Markdown({ text, className }: MarkdownProps) {
@@ -12,6 +13,9 @@ export function Markdown({ text, className }: MarkdownProps) {
   }, [text]);
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: html }} className={className} />
+    <div
+      dangerouslySetInnerHTML={{ __html: html }}
+      {...withClassNames(className)}
+    />
   );
 }

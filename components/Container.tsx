@@ -1,8 +1,6 @@
-import { Children } from "#/lib/react.ts";
+import { ChildrenProps } from "#/lib/children.ts";
 
-export type ContainerProps = {
-  children?: Children;
-};
+export type ContainerProps = ChildrenProps;
 
 export function Container({ children }: ContainerProps) {
   return (

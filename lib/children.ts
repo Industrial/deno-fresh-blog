@@ -5,3 +5,7 @@ export type Children =
   | Array<ReactNode>
   | JSX.Element
   | Array<JSX.Element>;
+
+export type ChildrenProps = {
+  children?: Children;
+};

@@ -1,10 +1,7 @@
-import { Children } from "#/lib/react.ts";
-import { Container } from "#/components/Container.tsx";
+import { ChildrenProps } from "#/lib/children.ts";
 import { Navbar } from "#/components/Navbar.tsx";
 
-export type ApplicationProps = {
-  children?: Children;
-};
+export type ApplicationProps = ChildrenProps;
 
 export function Application({ children }: ApplicationProps) {
   return (
