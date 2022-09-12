@@ -50,9 +50,11 @@ export const handler: Handlers<Post> = {
   },
 };
 
-export default function PostViewPage({ data }: PageProps<Post>) {
+export default function PostViewPage(
+  { params, route, url, data }: PageProps<Post>,
+) {
   return (
-    <Application>
+    <Application params={params} route={route} url={url}>
       <PostView post={data} />
     </Application>
   );

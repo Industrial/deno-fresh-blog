@@ -35,9 +35,11 @@ export const handler: Handlers<PostQuery["post"]> = {
   },
 };
 
-export default function PostListPage({ data }: PageProps<PostQuery["post"]>) {
+export default function PostListPage(
+  { params, route, url, data }: PageProps<PostQuery["post"]>,
+) {
   return (
-    <Application>
+    <Application params={params} route={route} url={url}>
       <PostList posts={data} />
     </Application>
   );

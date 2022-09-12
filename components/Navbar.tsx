@@ -1,14 +1,42 @@
+import { Router } from "#/contexts/Router.ts";
+import { withClassNames } from "#/lib/classNames.ts";
+
 export function Navbar() {
   return (
-    <>
-      <div className="flex justify-center items-center h-20 bg-white text-black">
-        <a className="pl-4 pr-4 pt-7 pb-7" href="/">Home</a>
-        <a className="pl-4 pr-4 pt-7 pb-7" href="/about">About</a>
-        <a className="pl-4 pr-4 pt-7 pb-7" href="/contact">Contact</a>
-      </div>
-      <div className="flex justify-center items-center h-20 bg-blue-400 font-semibold text-white text-5xl">
-        <h1>#Code9</h1>
-      </div>
-    </>
+    <Router.Consumer>
+      {({ params, route, url }) => {
+        return (
+          <div className="flex justify-center items-center h-20 bg-blue-400 text-white">
+            <a
+              {...withClassNames(
+                "pl-4 pr-4 pt-7 pb-7",
+                (route.startsWith("/post") || route === "/") && "font-bold",
+              )}
+              href="/"
+            >
+              Blog
+            </a>
+            <a
+              {...withClassNames(
+                "pl-4 pr-4 pt-7 pb-7",
+                route === "/about" && "font-bold",
+              )}
+              href="/about"
+            >
+              About
+            </a>
+            <a
+              {...withClassNames(
+                "pl-4 pr-4 pt-7 pb-7",
+                route === "/contact" && "font-bold",
+              )}
+              href="/contact"
+            >
+              Contact
+            </a>
+          </div>
+        );
+      }}
+    </Router.Consumer>
   );
 }
