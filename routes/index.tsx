@@ -1,13 +1,13 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+import { Handlers } from "$fresh/server.ts";
 
-import { Application } from "#/components/Application.tsx";
 import {
   PostDocument,
   PostQuery,
   PostQueryVariables,
 } from "#/graphql/generated/client.ts";
-import { client, handleQueryResult } from "#/lib/graphql.ts";
 import { PostList } from "#/components/page/blog/PostList.tsx";
+import { client, handleQueryResult } from "#/lib/graphql.ts";
+import { page } from "#/lib/page.tsx";
 
 export const handler: Handlers<PostQuery["post"]> = {
   async GET(_req, ctx) {
@@ -35,12 +35,6 @@ export const handler: Handlers<PostQuery["post"]> = {
   },
 };
 
-export default function PostListPage(
-  { params, route, url, data }: PageProps<PostQuery["post"]>,
-) {
-  return (
-    <Application params={params} route={route} url={url}>
-      <PostList posts={data} />
-    </Application>
-  );
-}
+export default page<PostQuery["post"]>(({ data }) => {
+  return <PostList posts={data} />;
+});

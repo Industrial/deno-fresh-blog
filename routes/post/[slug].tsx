@@ -1,14 +1,14 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+import { Handlers } from "$fresh/server.ts";
 
 import {
   PostDocument,
   PostQuery,
   PostQueryVariables,
 } from "#/graphql/generated/client.ts";
-import { Application } from "#/components/Application.tsx";
 import { ArrayElement } from "#/lib/types.ts";
 import { PostView } from "#/components/page/blog/PostView.tsx";
 import { client, handleQueryResult } from "#/lib/graphql.ts";
+import { page } from "#/lib/page.tsx";
 
 export type Post = ArrayElement<PostQuery["post"]>;
 
@@ -50,12 +50,6 @@ export const handler: Handlers<Post> = {
   },
 };
 
-export default function PostViewPage(
-  { params, route, url, data }: PageProps<Post>,
-) {
-  return (
-    <Application params={params} route={route} url={url}>
-      <PostView post={data} />
-    </Application>
-  );
-}
+export default page<Post>(({ data }) => {
+  return <PostView post={data} />;
+});
