@@ -9,7 +9,9 @@ import { PostList } from "#/components/page/blog/PostList.tsx";
 import { client, handleQueryResult } from "#/lib/graphql.ts";
 import { page } from "#/lib/page.tsx";
 
-export const handler: Handlers<PostQuery["post"]> = {
+export type Posts = PostQuery["post"];
+
+export const handler: Handlers<Posts> = {
   async GET(_req, ctx) {
     const variables: PostQueryVariables = {
       filter: {
@@ -35,6 +37,6 @@ export const handler: Handlers<PostQuery["post"]> = {
   },
 };
 
-export default page<PostQuery["post"]>(({ data }) => {
+export default page<Posts>(({ data }) => {
   return <PostList posts={data} />;
 });
