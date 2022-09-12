@@ -10,9 +10,7 @@ export function Application({ children }: ApplicationProps) {
   return (
     <>
       <Navbar />
-      <Container>
-        {children}
-      </Container>
+      {children}
     </>
   );
 }

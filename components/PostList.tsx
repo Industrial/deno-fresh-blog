@@ -1,5 +1,6 @@
-import { PostQuery } from "#/graphql/generated/client.ts";
+import { Container } from "#/components/Container.tsx";
 import { PostListEntry } from "#/components/PostListEntry.tsx";
+import { PostQuery } from "#/graphql/generated/client.ts";
 
 export type PostListProps = {
   posts: PostQuery["post"];
@@ -7,10 +8,14 @@ export type PostListProps = {
 
 export function PostList({ posts }: PostListProps) {
   return (
-    <div className="flex flex-col">
-      {posts.map((entry) => {
-        return <PostListEntry post={entry} />;
-      })}
-    </div>
+    <Container>
+      <div className="mt-0 sm:mt-5 md:mt-10 xl:mt-40">
+        <div className="flex flex-col">
+          {posts.map((entry) => {
+            return <PostListEntry post={entry} />;
+          })}
+        </div>
+      </div>
+    </Container>
   );
 }

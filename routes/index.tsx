@@ -6,7 +6,7 @@ import {
   PostQuery,
   PostQueryVariables,
 } from "#/graphql/generated/client.ts";
-import { client } from "#/lib/graphql.ts";
+import { client, handleQueryResult } from "#/lib/graphql.ts";
 import { PostList } from "#/components/PostList.tsx";
 
 export const handler: Handlers<PostQuery["post"]> = {
@@ -27,20 +27,7 @@ export const handler: Handlers<PostQuery["post"]> = {
       variables,
     });
 
-    const error = result.error || result.errors?.length && result.errors[0];
-
-    if (error) {
-      const newError = new Error(
-        error.message,
-        {
-          cause: error.cause,
-        },
-      );
-
-      console.error(newError);
-
-      throw newError;
-    }
+    handleQueryResult<PostQuery>(result);
 
     const posts = result.data.post;
 
@@ -48,12 +35,10 @@ export const handler: Handlers<PostQuery["post"]> = {
   },
 };
 
-export default function Home({ data }: PageProps<PostQuery["post"]>) {
+export default function PostListPage({ data }: PageProps<PostQuery["post"]>) {
   return (
     <Application>
-      <div className="mt-0 sm:mt-5 md:mt-10 xl:mt-40">
-        <PostList posts={data} />
-      </div>
+      <PostList posts={data} />
     </Application>
   );
 }
