@@ -1,9 +1,10 @@
 import { ArrayElement } from "#/lib/types.ts";
+import { BodyText } from "#/components/text/BodyText.tsx";
 import { Container } from "#/components/Container.tsx";
+import { Markdown } from "#/components/text/Markdown.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
+import { Title } from "#/components/text/Title.tsx";
 import { formatDate } from "#/lib/format.ts";
-import { markdownToHTML } from "#/lib/markdown.ts";
-import { Markdown } from "./Markdown.tsx";
 
 export type PostViewProps = {
   post: ArrayElement<PostQuery["post"]>;
@@ -27,12 +28,15 @@ export function PostView({ post }: PostViewProps) {
             <div className="">
               {formatDate(new Date(post.date_created))}
             </div>
-            <div className="font-bold text-2xl">
-              <a href={`/post/${post.slug}`}>
-                {post.title}
-              </a>
-            </div>
-            <Markdown text={String(post.content)} />
+            <Title>
+              {post.title}
+            </Title>
+            <BodyText>
+              <Markdown
+                text={String(post.content)}
+                className="flex flex-col gap-5"
+              />
+            </BodyText>
           </div>
         </>
       </Container>

@@ -3,12 +3,15 @@ import { useMemo } from "preact/hooks";
 
 export type MarkdownProps = {
   text: string;
+  className?: string;
 };
 
-export function Markdown({ text }: MarkdownProps) {
+export function Markdown({ text, className }: MarkdownProps) {
   const html = useMemo(() => {
     return markdownToHTML(text);
   }, [text]);
 
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <div dangerouslySetInnerHTML={{ __html: html }} className={className} />
+  );
 }

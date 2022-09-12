@@ -1,8 +1,9 @@
 import { ArrayElement } from "#/lib/types.ts";
-import { Markdown } from "#/components/Markdown.tsx";
+import { BodyText } from "#/components/text/BodyText.tsx";
+import { Markdown } from "#/components/text/Markdown.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
+import { Title } from "#/components/text/Title.tsx";
 import { formatDate } from "#/lib/format.ts";
-import { markdownToHTML } from "#/lib/markdown.ts";
 
 export type PostListEntryProps = {
   post: ArrayElement<PostQuery["post"]>;
@@ -26,12 +27,14 @@ export function PostListEntry({ post }: PostListEntryProps) {
           <div className="">
             {formatDate(new Date(post.date_created))}
           </div>
-          <div className="font-bold text-2xl">
+          <Title>
             <a href={`/post/${post.slug}`}>
               {post.title}
             </a>
-          </div>
-          <Markdown text={String(post.intro || post.content)} />
+          </Title>
+          <BodyText>
+            <Markdown text={String(post.intro || post.content)} />
+          </BodyText>
           <div className="">
             <a href={`/post/${post.slug}`} className="text-underline">
               Read more
