@@ -27,7 +27,7 @@ export function PostListEntry({ post }: PostListEntryProps) {
           <div className="">
             {formatDate(new Date(post.date_created))}
           </div>
-          <Title>
+          <Title className="pb-1 sm:pb-2 md:pb-3 xl:pb-5">
             <a href={`/post/${post.slug}`}>
               {post.title}
             </a>
@@ -35,11 +35,11 @@ export function PostListEntry({ post }: PostListEntryProps) {
           <BodyText>
             <Markdown text={String(post.intro || post.content)} />
           </BodyText>
-          <div className="">
+          <BodyText>
             <a href={`/post/${post.slug}`} className="text-underline">
               Read more
             </a>
-          </div>
+          </BodyText>
         </div>
       </div>
     </div>

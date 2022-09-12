@@ -28,7 +28,7 @@ export function PostView({ post }: PostViewProps) {
             <div className="">
               {formatDate(new Date(post.date_created))}
             </div>
-            <Title>
+            <Title className="pb-1 sm:pb-2 md:pb-3 xl:pb-5">
               {post.title}
             </Title>
             <BodyText>
