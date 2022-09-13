@@ -7,7 +7,7 @@ import {
 } from "#/graphql/generated/client.ts";
 import { ArrayElement } from "#/lib/types.ts";
 import { PostView } from "#/components/page/blog/PostView.tsx";
-import { client, handleQueryResult } from "#/lib/graphql.ts";
+import { createApolloClient, handleQueryResult } from "#/lib/apollo.ts";
 import { page } from "#/lib/page.tsx";
 
 export type Post = ArrayElement<PostQuery["post"]>;
@@ -19,6 +19,8 @@ export const handler: Handlers<Post> = {
     if (!slug) {
       return ctx.renderNotFound();
     }
+
+    const client = createApolloClient();
 
     const variables: PostQueryVariables = {
       filter: {

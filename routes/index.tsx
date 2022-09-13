@@ -1,3 +1,4 @@
+import { NormalizedCacheObject } from "@apollo/client";
 import { Handlers } from "$fresh/server.ts";
 
 import {
@@ -6,13 +7,15 @@ import {
   PostQueryVariables,
 } from "#/graphql/generated/client.ts";
 import { PostList } from "#/components/page/blog/PostList.tsx";
-import { client, handleQueryResult } from "#/lib/graphql.ts";
+import { createApolloClient, handleQueryResult } from "#/lib/apollo.ts";
 import { page } from "#/lib/page.tsx";
 
 export type Posts = PostQuery["post"];
 
-export const handler: Handlers<Posts> = {
+export const handler: Handlers<NormalizedCacheObject> = {
   async GET(_req, ctx) {
+    const client = createApolloClient();
+
     const variables: PostQueryVariables = {
       filter: {
         status: {
@@ -28,15 +31,12 @@ export const handler: Handlers<Posts> = {
       query: PostDocument,
       variables,
     });
-
     handleQueryResult<PostQuery>(result);
 
-    const posts = result.data.post;
-
-    return ctx.render(posts);
+    return ctx.render(client.extract());
   },
 };
 
-export default page<Posts>(({ data }) => {
-  return <PostList posts={data} />;
+export default page(() => {
+  return <PostList />;
 });
