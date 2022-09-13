@@ -6,30 +6,32 @@ import {
   PostQuery,
   PostQueryVariables,
 } from "#/graphql/generated/client.ts";
-import { PostList } from "#/components/page/blog/PostList.tsx";
+import PostListIsland from "#/islands/PostListIsland.tsx";
 import { createApolloClient, handleQueryResult } from "#/lib/apollo.ts";
 import { page } from "#/lib/page.tsx";
 
 export type Posts = PostQuery["post"];
 
+export const postQueryVariables: PostQueryVariables = {
+  filter: {
+    status: {
+      _eq: "published",
+    },
+  },
+  sort: ["-date_created"],
+  limit: 1,
+  offset: 0,
+};
+
 export const handler: Handlers<NormalizedCacheObject> = {
   async GET(_req, ctx) {
-    const client = createApolloClient();
-
-    const variables: PostQueryVariables = {
-      filter: {
-        status: {
-          _eq: "published",
-        },
-      },
-      sort: ["-date_created"],
-      limit: 10,
-      offset: 0,
-    };
+    const client = createApolloClient({
+      isServer: true,
+    });
 
     const result = await client.query<PostQuery>({
       query: PostDocument,
-      variables,
+      variables: postQueryVariables,
     });
     handleQueryResult<PostQuery>(result);
 
@@ -37,6 +39,6 @@ export const handler: Handlers<NormalizedCacheObject> = {
   },
 };
 
-export default page(() => {
-  return <PostList />;
+export default page(({ data }) => {
+  return <PostListIsland data={data} />;
 });
