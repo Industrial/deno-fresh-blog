@@ -1,3 +1,4 @@
+/// <reference lib="deno.ns" />
 import { IS_BROWSER } from "$fresh/src/runtime/utils.ts";
 import { NormalizedCacheObject } from "@apollo/client";
 import { useState } from "preact/hooks";
