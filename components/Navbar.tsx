@@ -1,5 +1,5 @@
 import { Router } from "#/contexts/Router.ts";
-import { withClassNames } from "#/lib/classNames.ts";
+import { NavbarLink } from "#/components/NavbarLink.tsx";
 
 export function Navbar() {
   return (
@@ -7,33 +7,21 @@ export function Navbar() {
       {({ route }) => {
         return (
           <div className="flex justify-center items-center h-20 bg-blue-400 text-white">
-            <a
-              {...withClassNames(
-                "pl-4 pr-4 pt-7 pb-7",
-                (route.startsWith("/post") || route === "/") && "font-bold",
-              )}
+            <NavbarLink
+              label="Blog"
               href="/"
-            >
-              Blog
-            </a>
-            <a
-              {...withClassNames(
-                "pl-4 pr-4 pt-7 pb-7",
-                route === "/about" && "font-bold",
-              )}
+              isActive={route.startsWith("/post") || route === "/"}
+            />
+            <NavbarLink
+              label="About"
               href="/about"
-            >
-              About
-            </a>
-            <a
-              {...withClassNames(
-                "pl-4 pr-4 pt-7 pb-7",
-                route === "/contact" && "font-bold",
-              )}
+              isActive={route === "/about"}
+            />
+            <NavbarLink
+              label="Contact"
               href="/contact"
-            >
-              Contact
-            </a>
+              isActive={route === "/contact"}
+            />
           </div>
         );
       }}

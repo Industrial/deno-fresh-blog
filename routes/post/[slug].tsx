@@ -1,18 +1,20 @@
 import { Handlers } from "$fresh/server.ts";
+import { dehydrate, DehydratedState } from "react-query";
 
+import { API_TOKEN, API_URL } from "#/lib/env.ts";
+import { ArrayElement } from "#/lib/types.ts";
 import {
-  PostDocument,
   PostQuery,
   PostQueryVariables,
+  usePostQuery,
 } from "#/graphql/generated/client.ts";
-import { ArrayElement } from "#/lib/types.ts";
 import { PostView } from "#/components/page/blog/PostView.tsx";
-import { createApolloClient, handleQueryResult } from "#/lib/apollo.ts";
+import { createGraphQLClient } from "#/lib/graphql.ts";
 import { page } from "#/lib/page.tsx";
 
 export type Post = ArrayElement<PostQuery["post"]>;
 
-export const handler: Handlers<Post> = {
+export const handler: Handlers<DehydratedState> = {
   async GET(_req, ctx) {
     const slug = ctx.params.slug;
 
@@ -20,7 +22,7 @@ export const handler: Handlers<Post> = {
       return ctx.renderNotFound();
     }
 
-    const client = createApolloClient();
+    const client = createGraphQLClient();
 
     const variables: PostQueryVariables = {
       filter: {
@@ -35,23 +37,28 @@ export const handler: Handlers<Post> = {
       offset: 0,
     };
 
-    const result = await client.query<PostQuery>({
-      query: PostDocument,
-      variables,
-    });
+    const result = await client.fetchQuery(
+      usePostQuery.getKey(variables),
+      usePostQuery.fetcher({
+        endpoint: API_URL,
+        fetchParams: {
+          headers: {
+            authorization: `Bearer ${API_TOKEN}`,
+          },
+        },
+      }, variables),
+    );
 
-    handleQueryResult<PostQuery>(result);
-
-    const post = result.data.post[0];
+    const post = result.post[0];
 
     if (!post) {
       return ctx.renderNotFound();
     }
 
-    return ctx.render(post);
+    return ctx.render(dehydrate(client));
   },
 };
 
-export default page<Post>(({ data }) => {
+export default page(({ data }) => {
   return <PostView post={data} />;
 });

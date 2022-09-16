@@ -1,9 +1,9 @@
-import { NormalizedCacheObject } from "@apollo/client";
+import { DehydratedState } from "react-query";
 import { PageProps } from "$fresh/server.ts";
 
 import { Application } from "#/components/Application.tsx";
 
-export function page<T extends NormalizedCacheObject>(
+export function page<T extends DehydratedState>(
   fn: (props: PageProps<T>) => JSX.Element,
 ) {
   return ({ params, route, url, data }: PageProps<T>) => {

@@ -1,53 +1,37 @@
-/// <reference lib="deno.ns" />
-import { IS_BROWSER } from "$fresh/src/runtime/utils.ts";
-import { NormalizedCacheObject } from "@apollo/client";
+import { DehydratedState } from "react-query";
 import { useState } from "preact/hooks";
 
 import { Container } from "#/components/Container.tsx";
-import {
-  PostDocument,
-  PostQuery,
-  PostQueryVariables,
-} from "#/graphql/generated/client.ts";
 import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
-import { createApolloClient } from "#/lib/apollo.ts";
-import { postQueryVariables } from "#/routes/index.tsx";
+import { postQueryVariables } from "#/graphql/queries/post.ts";
+import { createGraphQLClient } from "#/lib/graphql.ts";
+import { PostQuery, usePostQuery } from "#/graphql/generated/client.ts";
 
 export type PostListProps = {
-  data: NormalizedCacheObject;
+  data: DehydratedState;
 };
 
 export default function PostListIsland({ data }: PostListProps) {
   const [offset, setOffset] = useState<number>(postQueryVariables.offset || 0);
 
-  const client = createApolloClient({
-    isServer: !IS_BROWSER,
-    initialData: data,
-  });
-
-  // Take the variables from the server side by default and update them using
-  // client side state.
-  const variables = {
-    ...postQueryVariables,
-    offset,
-  };
-
-  const postQuery = client.readQuery<PostQuery, PostQueryVariables>(
-    {
-      query: PostDocument,
-      variables,
-    },
-  );
-
   const handleButttonClick = () => {
     setOffset(offset + 1);
   };
+
+  const client = createGraphQLClient({ data });
+  const result = client.getQueryData<PostQuery>(
+    usePostQuery.getKey(postQueryVariables),
+  );
+
+  if (!result) {
+    return null;
+  }
 
   return (
     <Container>
       <div className="mt-0 sm:mt-5 md:mt-10 xl:mt-40">
         <div className="flex flex-col">
-          {postQuery?.post.map((entry) => {
+          {result.post.map((entry) => {
             return <PostListEntry post={entry} />;
           })}
         </div>

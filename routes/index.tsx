@@ -1,41 +1,24 @@
-import { NormalizedCacheObject } from "@apollo/client";
 import { Handlers } from "$fresh/server.ts";
+import { dehydrate, DehydratedState } from "react-query";
 
-import {
-  PostDocument,
-  PostQuery,
-  PostQueryVariables,
-} from "#/graphql/generated/client.ts";
 import PostListIsland from "#/islands/PostListIsland.tsx";
-import { createApolloClient, handleQueryResult } from "#/lib/apollo.ts";
+import { PostQuery, usePostQuery } from "#/graphql/generated/client.ts";
+import { createGraphQLClient, fetcherOptions } from "#/lib/graphql.ts";
 import { page } from "#/lib/page.tsx";
+import { postQueryVariables } from "#/graphql/queries/post.ts";
 
 export type Posts = PostQuery["post"];
 
-export const postQueryVariables: PostQueryVariables = {
-  filter: {
-    status: {
-      _eq: "published",
-    },
-  },
-  sort: ["-date_created"],
-  limit: 1,
-  offset: 0,
-};
-
-export const handler: Handlers<NormalizedCacheObject> = {
+export const handler: Handlers<DehydratedState> = {
   async GET(_req, ctx) {
-    const client = createApolloClient({
-      isServer: true,
-    });
+    const client = createGraphQLClient();
 
-    const result = await client.query<PostQuery>({
-      query: PostDocument,
-      variables: postQueryVariables,
-    });
-    handleQueryResult<PostQuery>(result);
+    const result = await client.fetchQuery(
+      usePostQuery.getKey(postQueryVariables),
+      usePostQuery.fetcher(fetcherOptions, postQueryVariables),
+    );
 
-    return ctx.render(client.extract());
+    return ctx.render(dehydrate(client));
   },
 };
 

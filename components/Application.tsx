@@ -1,21 +1,20 @@
-import { NormalizedCacheObject } from "@apollo/client";
+import { DehydratedState } from "react-query";
 
-import { ApolloClient } from "#/contexts/ApolloClient.ts";
+import { GraphQLClient } from "#/contexts/GraphQLClient.ts";
 import { ChildrenProps } from "#/lib/children.ts";
 import { Navbar } from "#/components/Navbar.tsx";
 import { Router, RouterContextProps } from "#/contexts/Router.ts";
-import { createApolloClient } from "#/lib/apollo.ts";
+import { createGraphQLClient } from "#/lib/graphql.ts";
 
 export type ApplicationProps = ChildrenProps & RouterContextProps & {
-  data: NormalizedCacheObject;
+  data: DehydratedState;
 };
 
 export function Application(
   { children, params, route, url, data }: ApplicationProps,
 ) {
-  const client = createApolloClient({
-    isServer: true,
-    initialData: data,
+  const client = createGraphQLClient({
+    data,
   });
 
   return (
@@ -26,12 +25,12 @@ export function Application(
         url,
       }}
     >
-      <ApolloClient.Provider value={{ client }}>
+      <GraphQLClient.Provider value={{ client }}>
         <>
           <Navbar />
           {children}
         </>
-      </ApolloClient.Provider>
+      </GraphQLClient.Provider>
     </Router.Provider>
   );
 }

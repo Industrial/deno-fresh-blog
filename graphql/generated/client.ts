@@ -1,11 +1,29 @@
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-const defaultOptions = {} as const;
+
+function fetcher<TData, TVariables>(endpoint: string, requestInit: RequestInit, query: string, variables?: TVariables) {
+  return async (): Promise<TData> => {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      ...requestInit,
+      body: JSON.stringify({ query, variables }),
+    });
+
+    const json = await res.json();
+
+    if (json.errors) {
+      const { message } = json.errors[0];
+
+      throw new Error(message);
+    }
+
+    return json.data;
+  }
+}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -312,7 +330,7 @@ export type PostQueryVariables = Exact<{
 export type PostQuery = { __typename?: 'Query', post: Array<{ __typename?: 'post', id?: string | null, title: string, slug: string, intro?: string | null, content?: string | null, status: string, date_created?: any | null }> };
 
 
-export const PostDocument = gql`
+export const PostDocument = `
     query Post($filter: post_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]) {
   post(
     filter: $filter
@@ -332,36 +350,23 @@ export const PostDocument = gql`
   }
 }
     `;
+export const usePostQuery = <
+      TData = PostQuery,
+      TError = unknown
+    >(
+      dataSource: { endpoint: string, fetchParams?: RequestInit },
+      variables?: PostQueryVariables,
+      options?: UseQueryOptions<PostQuery, TError, TData>
+    ) =>
+    useQuery<PostQuery, TError, TData>(
+      variables === undefined ? ['Post'] : ['Post', variables],
+      fetcher<PostQuery, PostQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, PostDocument, variables),
+      options
+    );
+usePostQuery.document = PostDocument;
 
-/**
- * __usePostQuery__
- *
- * To run a query within a React component, call `usePostQuery` and pass it any options that fit your needs.
- * When your component renders, `usePostQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = usePostQuery({
- *   variables: {
- *      filter: // value for 'filter'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      page: // value for 'page'
- *      search: // value for 'search'
- *      sort: // value for 'sort'
- *   },
- * });
- */
-export function usePostQuery(baseOptions?: Apollo.QueryHookOptions<PostQuery, PostQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PostQuery, PostQueryVariables>(PostDocument, options);
-      }
-export function usePostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostQuery, PostQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PostQuery, PostQueryVariables>(PostDocument, options);
-        }
-export type PostQueryHookResult = ReturnType<typeof usePostQuery>;
-export type PostLazyQueryHookResult = ReturnType<typeof usePostLazyQuery>;
-export type PostQueryResult = Apollo.QueryResult<PostQuery, PostQueryVariables>;
+
+usePostQuery.getKey = (variables?: PostQueryVariables) => variables === undefined ? ['Post'] : ['Post', variables];
+;
+
+usePostQuery.fetcher = (dataSource: { endpoint: string, fetchParams?: RequestInit }, variables?: PostQueryVariables) => fetcher<PostQuery, PostQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, PostDocument, variables);
