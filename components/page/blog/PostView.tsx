@@ -1,16 +1,41 @@
-import { ArrayElement } from "#/lib/types.ts";
+import { DehydratedState } from "react-query";
+
 import { BodyText } from "#/components/text/BodyText.tsx";
 import { Container } from "#/components/Container.tsx";
 import { Markdown } from "#/components/text/Markdown.tsx";
-import { PostQuery } from "#/graphql/generated/client.ts";
+import { PostQuery, usePostQuery } from "#/graphql/generated/client.ts";
 import { Title } from "#/components/text/Title.tsx";
+import { createGraphQLClient } from "#/lib/graphql.ts";
 import { formatDate } from "#/lib/format.ts";
 
 export type PostViewProps = {
-  post: ArrayElement<PostQuery["post"]>;
+  slug: string;
+  dehydratedState: DehydratedState;
 };
 
-export function PostView({ post }: PostViewProps) {
+export function PostView({ slug, dehydratedState }: PostViewProps) {
+  const client = createGraphQLClient({ dehydratedState });
+  const result = client.getQueryData<PostQuery>(
+    usePostQuery.getKey({
+      filter: {
+        status: {
+          _eq: "published",
+        },
+        slug: {
+          _eq: slug,
+        },
+      },
+      limit: 1,
+      offset: 0,
+    }),
+  );
+
+  const post = result?.post[0];
+
+  if (!post) {
+    return null;
+  }
+
   return (
     <div className="flex flex-col">
       <Container>

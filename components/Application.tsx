@@ -14,7 +14,7 @@ export function Application(
   { children, params, route, url, data }: ApplicationProps,
 ) {
   const client = createGraphQLClient({
-    data,
+    dehydratedState: data,
   });
 
   return (

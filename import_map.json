@@ -15,8 +15,8 @@
     "react-dom": "https://esm.sh/react-dom@18.2.0?dev",
 
     "comrak": "https://deno.land/x/comrak@0.1.1/mod.ts",
-    "react-query": "https://esm.sh/react-query",
-    "@tanstack/react-query": "https://esm.sh/react-query",
+    "react-query": "https://esm.sh/react-query@3.39.2",
+    "@tanstack/react-query": "https://esm.sh/react-query@3.39.2",
 
     "@apollo/client": "https://esm.sh/@apollo/client@3.6.9?dev&deps=react@18.2.0,react-dom@18.2.0",
     "@wry/context": "https://esm.sh/*@wry/context",

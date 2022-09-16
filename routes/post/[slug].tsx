@@ -1,20 +1,32 @@
-import { Handlers } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { dehydrate, DehydratedState } from "react-query";
 
-import { API_TOKEN, API_URL } from "#/lib/env.ts";
-import { ArrayElement } from "#/lib/types.ts";
 import {
-  PostQuery,
   PostQueryVariables,
   usePostQuery,
 } from "#/graphql/generated/client.ts";
+import { createGraphQLClient, fetcherOptions } from "#/lib/graphql.ts";
+import { Application } from "#/components/Application.tsx";
 import { PostView } from "#/components/page/blog/PostView.tsx";
-import { createGraphQLClient } from "#/lib/graphql.ts";
-import { page } from "#/lib/page.tsx";
 
-export type Post = ArrayElement<PostQuery["post"]>;
+export type PostViewPageProps = {
+  slug: string;
+  dehydratedState: DehydratedState;
+};
 
-export const handler: Handlers<DehydratedState> = {
+export default function PostViewPage(
+  { params, route, url, data }: PageProps<PostViewPageProps>,
+) {
+  const { slug, dehydratedState } = data;
+
+  return (
+    <Application params={params} route={route} url={url} data={dehydratedState}>
+      <PostView slug={slug} dehydratedState={dehydratedState} />
+    </Application>
+  );
+}
+
+export const handler: Handlers<PostViewPageProps> = {
   async GET(_req, ctx) {
     const slug = ctx.params.slug;
 
@@ -39,14 +51,7 @@ export const handler: Handlers<DehydratedState> = {
 
     const result = await client.fetchQuery(
       usePostQuery.getKey(variables),
-      usePostQuery.fetcher({
-        endpoint: API_URL,
-        fetchParams: {
-          headers: {
-            authorization: `Bearer ${API_TOKEN}`,
-          },
-        },
-      }, variables),
+      usePostQuery.fetcher(fetcherOptions, variables),
     );
 
     const post = result.post[0];
@@ -55,10 +60,9 @@ export const handler: Handlers<DehydratedState> = {
       return ctx.renderNotFound();
     }
 
-    return ctx.render(dehydrate(client));
+    return ctx.render({
+      slug,
+      dehydratedState: dehydrate(client),
+    });
   },
 };
-
-export default page(({ data }) => {
-  return <PostView post={data} />;
-});

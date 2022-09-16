@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 export type Children =
+  | string
   | ReactNode
   | Array<ReactNode>
   | JSX.Element

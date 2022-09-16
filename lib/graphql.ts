@@ -1,31 +1,33 @@
 import { DehydratedState, hydrate, QueryCache, QueryClient } from "react-query";
 
-import { API_TOKEN, API_URL } from "#/lib/env.ts";
-
 export type CreateGraphQLClientProps = {
-  data?: DehydratedState;
+  dehydratedState?: DehydratedState;
 };
 
-export function createGraphQLClient({ data }: CreateGraphQLClientProps = {}) {
+export function createGraphQLClient(
+  { dehydratedState }: CreateGraphQLClientProps = {},
+) {
   const queryCache = new QueryCache();
 
   const queryClient = new QueryClient({
     queryCache,
   });
 
-  if (data) {
-    hydrate(queryClient, data);
+  if (dehydratedState) {
+    hydrate(queryClient, dehydratedState);
   }
 
   return queryClient;
 }
 
 export const fetcherOptions = {
-  endpoint: API_URL,
+  // Since Deno Deploy doesn't do dynamic imports (yet), we can't ship code to
+  // the client (via islands) that uses env vars.
+  endpoint: "https://6m8s0kwh.directus.app/graphql",
   fetchParams: {
     headers: {
       "content-type": "application/json",
-      authorization: `Bearer ${API_TOKEN}`,
+      // authorization: `Bearer ${API_TOKEN}`,
     },
   },
 };

@@ -3,24 +3,32 @@ import { useState } from "preact/hooks";
 
 import { Container } from "#/components/Container.tsx";
 import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
-import { postQueryVariables } from "#/graphql/queries/post.ts";
 import { createGraphQLClient } from "#/lib/graphql.ts";
 import { PostQuery, usePostQuery } from "#/graphql/generated/client.ts";
 
 export type PostListProps = {
-  data: DehydratedState;
+  dehydratedState: DehydratedState;
 };
 
-export default function PostListIsland({ data }: PostListProps) {
-  const [offset, setOffset] = useState<number>(postQueryVariables.offset || 0);
+export default function PostListIsland({ dehydratedState }: PostListProps) {
+  const [offset, setOffset] = useState<number>(0);
 
   const handleButttonClick = () => {
     setOffset(offset + 1);
   };
 
-  const client = createGraphQLClient({ data });
+  const client = createGraphQLClient({ dehydratedState });
   const result = client.getQueryData<PostQuery>(
-    usePostQuery.getKey(postQueryVariables),
+    usePostQuery.getKey({
+      filter: {
+        status: {
+          _eq: "published",
+        },
+      },
+      sort: ["-date_created"],
+      limit: 1,
+      offset: 0,
+    }),
   );
 
   if (!result) {
