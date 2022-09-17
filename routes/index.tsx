@@ -6,7 +6,7 @@ import {
   PostQueryVariables,
   usePostQuery,
 } from "#/graphql/generated/client.ts";
-import { createGraphQLClient, fetcherOptions } from "#/lib/graphql.ts";
+import { createGraphQLClient, getFetcherOptions } from "#/lib/graphql.ts";
 import { Application } from "#/components/Application.tsx";
 
 export type PostListPageProps = {
@@ -42,7 +42,7 @@ export const handler: Handlers<PostListPageProps> = {
 
     const result = await client.fetchQuery(
       usePostQuery.getKey(variables),
-      usePostQuery.fetcher(fetcherOptions, variables),
+      usePostQuery.fetcher(getFetcherOptions(), variables),
     );
 
     return ctx.render({

@@ -20,14 +20,16 @@ export function createGraphQLClient(
   return queryClient;
 }
 
-export const fetcherOptions = {
-  // Since Deno Deploy doesn't do dynamic imports (yet), we can't ship code to
-  // the client (via islands) that uses env vars.
-  endpoint: "https://6m8s0kwh.directus.app/graphql",
-  fetchParams: {
-    headers: {
-      "content-type": "application/json",
-      // authorization: `Bearer ${API_TOKEN}`,
+export function getFetcherOptions() {
+  return {
+    // Since Deno Deploy doesn't do dynamic imports (yet), we can't ship code to
+    // the client (via islands) that uses env vars.
+    endpoint: "https://6m8s0kwh.directus.app/graphql",
+    fetchParams: {
+      headers: {
+        "content-type": "application/json",
+        // authorization: `Bearer ${API_TOKEN}`,
+      },
     },
-  },
-};
+  };
+}
