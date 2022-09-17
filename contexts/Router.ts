@@ -6,14 +6,8 @@ export type RouterContextProps = {
   url: URL;
 };
 
-export function getRouterContextDefaults(): RouterContextProps {
-  return {
-    params: {},
-    route: "",
-    url: new URL("https://deno.com"),
-  };
-}
-
-export const Router = createContext<RouterContextProps>(
-  getRouterContextDefaults(),
-);
+export const Router = createContext<RouterContextProps>({
+  params: {},
+  route: "",
+  url: new URL("https://deno.com"),
+});
