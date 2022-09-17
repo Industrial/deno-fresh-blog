@@ -9,7 +9,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.js": "deno task lint"
+    "*.{js,jsx,ts,tsx}": "deno task lint"
   },
   "keywords": [],
   "author": "",
