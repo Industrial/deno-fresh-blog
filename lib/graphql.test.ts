@@ -10,6 +10,18 @@ Deno.test("createGraphQLClient", () => {
   assertEquals(expected, actual);
 });
 
+Deno.test("createGraphQLClient with dehydratedState", () => {
+  const actual = createGraphQLClient({
+    dehydratedState: {
+      mutations: [],
+      queries: [],
+    },
+  }) instanceof QueryClient;
+  const expected = true;
+
+  assertEquals(expected, actual);
+});
+
 Deno.test("getFetcherOptions", () => {
   const actual = getFetcherOptions();
   const expected = {
