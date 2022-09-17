@@ -1,6 +1,7 @@
 {
   "imports": {
-    "#/": "./",
+    "std/": "https://deno.land/std@0.156.0/",
+
     "$fresh/": "https://deno.land/x/fresh@1.1.0/",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1",
@@ -29,6 +30,8 @@
     "symbol-observable": "https://esm.sh/*symbol-observable",
     "ts-invariant": "https://esm.sh/*ts-invariant",
     "ts-invariant/process/index.js": "https://esm.sh/*ts-invariant/process/index.js",
-    "zen-observable-ts": "https://esm.sh/*zen-observable-ts"
+    "zen-observable-ts": "https://esm.sh/*zen-observable-ts",
+
+    "#/": "./"
   }
 }

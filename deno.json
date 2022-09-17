@@ -1,10 +1,15 @@
 {
   "tasks": {
-    "install": "npm i -g pnpm && pnpm install",
     "build": "deno task graphql:codegen",
     "dev": "deno task start",
     "graphql:codegen": "pnpm run graphql:codegen",
-    "start": "deno run -A --unstable --watch=static/,routes/,graphql/generated/ dev.ts"
+    "graphql:codegen:watch": "pnpm run graphql:codegen:watch",
+    "install": "npm i -g pnpm && pnpm install",
+    "lint": "deno lint --ignore=./node_modules",
+    "lint:watch": "deno task lint --watch",
+    "start": "deno run -A --unstable --watch=static/,routes/,graphql/generated/ dev.ts",
+    "test": "deno test --no-check -A --ignore=./node_modules .",
+    "test:watch": "deno task test --watch"
   },
   "importMap": "./import_map.json",
   "compilerOptions": {
