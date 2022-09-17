@@ -1,7 +1,7 @@
 import { DehydratedState } from "react-query";
 
 import { GraphQLClient } from "#/contexts/GraphQLClient.ts";
-import { ChildrenProps } from "#/lib/children.ts";
+import { ChildrenProps } from "#/lib/types.ts";
 import { Navbar } from "#/components/Navbar.tsx";
 import { Router, RouterContextProps } from "#/contexts/Router.ts";
 import { createGraphQLClient } from "#/lib/graphql.ts";

@@ -1,4 +1,4 @@
-import { ChildrenProps } from "#/lib/children.ts";
+import { ChildrenProps } from "#/lib/types.ts";
 
 export type BodyTextProps = ChildrenProps;
 
