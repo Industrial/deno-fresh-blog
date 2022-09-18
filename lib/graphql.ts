@@ -58,11 +58,7 @@ export function useQuery<Q, V>({
 
   useEffect(() => {
     (async () => {
-      const newQuery = await client.fetchQuery<Q>(key, fetcher);
-
-      console.log("newQuery", newQuery);
-
-      setQuery(newQuery);
+      setQuery(await client.fetchQuery<Q>(key, fetcher));
     })();
   }, [variables]);
 
