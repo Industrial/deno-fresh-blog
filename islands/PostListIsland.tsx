@@ -22,6 +22,7 @@ export default function PostListIsland({ dehydratedState }: PostListProps) {
   const client = useMemo(() => {
     return createGraphQLClient({ dehydratedState });
   }, [dehydratedState]);
+  const [limit, setLimit] = useState<number>(1);
   const [offset, setOffset] = useState<number>(0);
   const queryVariables = useMemo(() => {
     return {
@@ -31,10 +32,10 @@ export default function PostListIsland({ dehydratedState }: PostListProps) {
         },
       },
       sort: ["-date_created"],
-      limit: 1,
+      limit,
       offset,
     };
-  }, [offset]);
+  }, [offset, limit]);
 
   const query = useQuery<PostQuery, PostQueryVariables>({
     client,
@@ -44,7 +45,8 @@ export default function PostListIsland({ dehydratedState }: PostListProps) {
   });
 
   function handleButtonClick() {
-    setOffset(offset + 1);
+    setLimit(limit + 1);
+    // setOffset(offset + 1);
   }
 
   if (!query) {
