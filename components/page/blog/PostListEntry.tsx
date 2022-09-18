@@ -22,7 +22,7 @@ export function PostListEntry({ post }: PostListEntryProps) {
           />
         </a>
       </div>
-      <div className="flex-1 flex mt-1 md:mt-0 mb-5 md:mb-0">
+      <div className="flex-1 flex mt-1 md:mt-5 xl:mt-0 mb-5 md:mb-0">
         <div className="flex-1 flex flex-col p-1 xl:pl-16 xl:pr-0 xl:pt-0 xl:pb-0 justify-start">
           <div className="">
             {formatDate(new Date(post.date_created))}
