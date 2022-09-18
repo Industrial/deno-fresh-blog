@@ -14,18 +14,6 @@ export type PostViewPageProps = {
   dehydratedState: DehydratedState;
 };
 
-export default function PostViewPage(
-  { params, route, url, data }: PageProps<PostViewPageProps>,
-) {
-  const { slug, dehydratedState } = data;
-
-  return (
-    <Application params={params} route={route} url={url} data={dehydratedState}>
-      <PostView slug={slug} dehydratedState={dehydratedState} />
-    </Application>
-  );
-}
-
 export const handler: Handlers<PostViewPageProps> = {
   async GET(_req, ctx) {
     const slug = ctx.params.slug;
@@ -66,3 +54,15 @@ export const handler: Handlers<PostViewPageProps> = {
     });
   },
 };
+
+export default function PostViewPage(
+  { params, route, url, data }: PageProps<PostViewPageProps>,
+) {
+  const { slug, dehydratedState } = data;
+
+  return (
+    <Application params={params} route={route} url={url} data={dehydratedState}>
+      <PostView slug={slug} dehydratedState={dehydratedState} />
+    </Application>
+  );
+}

@@ -13,18 +13,6 @@ export type PostListPageProps = {
   dehydratedState: DehydratedState;
 };
 
-export default function PostListPage(
-  { params, route, url, data }: PageProps<PostListPageProps>,
-) {
-  const { dehydratedState } = data;
-
-  return (
-    <Application params={params} route={route} url={url} data={dehydratedState}>
-      <PostListIsland dehydratedState={dehydratedState} />
-    </Application>
-  );
-}
-
 export const handler: Handlers<PostListPageProps> = {
   async GET(_req, ctx) {
     const client = createGraphQLClient();
@@ -50,3 +38,15 @@ export const handler: Handlers<PostListPageProps> = {
     });
   },
 };
+
+export default function PostListPage(
+  { params, route, url, data }: PageProps<PostListPageProps>,
+) {
+  const { dehydratedState } = data;
+
+  return (
+    <Application params={params} route={route} url={url} data={dehydratedState}>
+      <PostListIsland dehydratedState={dehydratedState} />
+    </Application>
+  );
+}

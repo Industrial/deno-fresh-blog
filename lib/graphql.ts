@@ -1,4 +1,11 @@
-import { DehydratedState, hydrate, QueryCache, QueryClient } from "react-query";
+import { useEffect, useState } from "preact/hooks";
+import {
+  DehydratedState,
+  hydrate,
+  QueryCache,
+  QueryClient,
+  QueryKey,
+} from "react-query";
 
 export type CreateGraphQLClientProps = {
   dehydratedState?: DehydratedState;
@@ -32,4 +39,28 @@ export function getFetcherOptions() {
       },
     },
   };
+}
+
+export function useQuery<Q, V>({
+  client,
+  fetcher,
+  key,
+  variables,
+}: {
+  client: QueryClient;
+  fetcher: () => Promise<Q>;
+  key: QueryKey;
+  variables: V;
+}) {
+  const [query, setQuery] = useState<Q | undefined>(
+    client.getQueryData<Q>(key),
+  );
+
+  useEffect(() => {
+    (async () => {
+      setQuery(await client.fetchQuery<Q>(key, fetcher));
+    })();
+  }, [variables]);
+
+  return query;
 }
