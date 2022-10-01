@@ -1,5 +1,5 @@
 import { css, cx } from "#/lib/emotion.ts";
-import { color } from "#/styles/theme.ts";
+import { color } from "#/style/theme.ts";
 
 export type NavbarLinkProps = {
   href: string;

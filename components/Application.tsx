@@ -1,4 +1,4 @@
-import "#/styles/global-styles.ts";
+import "#/style/global-styles.ts";
 
 import { DehydratedState } from "react-query";
 

@@ -12,7 +12,8 @@ import {
   getFetcherOptions,
   useQuery,
 } from "#/lib/graphql.ts";
-import { Container } from "../components/Container.tsx";
+import { Container } from "#/components/Container.tsx";
+import { Button } from "#/components/button/Button.tsx";
 
 export type PostListIslandProps = {
   dehydratedState: DehydratedState;
@@ -64,7 +65,9 @@ export default function PostListIsland(
           })}
         </div>
         <div>
-          <button onClick={handleButtonClick}>Load More</button>
+          <Button variant="primary" onClick={handleButtonClick}>
+            Load More
+          </Button>
         </div>
       </div>
     </Container>

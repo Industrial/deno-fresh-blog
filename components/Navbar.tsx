@@ -1,7 +1,7 @@
 import { NavbarLink } from "#/components/NavbarLink.tsx";
 import { Router } from "#/contexts/Router.ts";
 import { css, cx } from "#/lib/emotion.ts";
-import { color, spacing } from "#/styles/theme.ts";
+import { color, spacing } from "#/style/theme.ts";
 
 export function Navbar() {
   return (

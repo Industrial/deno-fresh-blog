@@ -1,7 +1,7 @@
-import { css, cx } from "#/lib/emotion.ts";
 import { ChildrenProps } from "#/lib/types.ts";
 import { ClassNameProps } from "#/lib/classNames.ts";
-import { breakpoints, tabletPortraitUp } from "#/lib/style/breakpoints.ts";
+import { breakpoints, tabletPortraitUp } from "#/style/breakpoints.ts";
+import { css, cx } from "#/lib/emotion.ts";
 
 export type ContainerProps = ChildrenProps & ClassNameProps;
 
