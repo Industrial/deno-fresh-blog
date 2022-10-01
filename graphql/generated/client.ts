@@ -102,7 +102,7 @@ export type Comment = {
   date_updated?: Maybe<Scalars['Date']>;
   date_updated_func?: Maybe<Datetime_Functions>;
   email: Scalars['String'];
-  id?: Maybe<Scalars['ID']>;
+  id: Scalars['ID'];
   post?: Maybe<Post>;
   user_created?: Maybe<Scalars['String']>;
   user_updated?: Maybe<Scalars['String']>;
@@ -232,11 +232,11 @@ export type Post = {
   date_created_func?: Maybe<Datetime_Functions>;
   date_updated?: Maybe<Scalars['Date']>;
   date_updated_func?: Maybe<Datetime_Functions>;
-  id?: Maybe<Scalars['ID']>;
+  id: Scalars['ID'];
   intro?: Maybe<Scalars['String']>;
   slug: Scalars['String'];
   sort?: Maybe<Scalars['Int']>;
-  status: Scalars['String'];
+  status?: Maybe<Scalars['String']>;
   tags?: Maybe<Scalars['JSON']>;
   tags_func?: Maybe<Count_Functions>;
   title: Scalars['String'];
@@ -327,7 +327,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: Array<{ __typename?: 'post', id?: string | null, title: string, slug: string, intro?: string | null, content?: string | null, status: string, date_created?: any | null }> };
+export type PostQuery = { __typename?: 'Query', post: Array<{ __typename?: 'post', id: string, title: string, slug: string, intro?: string | null, content?: string | null, status?: string | null, date_created?: any | null }> };
 
 
 export const PostDocument = `
