@@ -38,7 +38,8 @@ injectGlobal({
 
   /* Make images easier to work with */
   "img, picture": {
-    maxWidth: "100%",
+    // I don't agree with this rule, so I turn it off.
+    // maxWidth: "100%",
     display: "block",
   },
 

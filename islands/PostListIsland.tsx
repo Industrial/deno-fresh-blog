@@ -1,6 +1,8 @@
 import { DehydratedState } from "react-query";
 import { useMemo, useState } from "preact/hooks";
 
+import { BlogContainer } from "#/components/page/blog/BlogContainer.tsx";
+import { Button } from "#/components/Button.tsx";
 import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
 import {
   PostQuery,
@@ -12,8 +14,6 @@ import {
   getFetcherOptions,
   useQuery,
 } from "#/lib/graphql.ts";
-import { Container } from "#/components/Container.tsx";
-import { Button } from "#/components/Button.tsx";
 
 export type PostListIslandProps = {
   dehydratedState: DehydratedState;
@@ -52,23 +52,17 @@ export default function PostListIsland(
   }
 
   return (
-    <Container>
-      <div className="mt-0 xl:mt-40">
-        <div className="flex flex-col">
-          {query.data?.post.map((entry) => {
-            return <PostListEntry post={entry} />;
-          })}
-        </div>
-        <div>
-          <Button
-            variant="primary"
-            onClick={handleButtonClick}
-            disabled={query.isLoading}
-          >
-            Load More
-          </Button>
-        </div>
-      </div>
-    </Container>
+    <BlogContainer>
+      {query.data?.post.map((entry) => {
+        return <PostListEntry post={entry} />;
+      })}
+      <Button
+        variant="primary"
+        onClick={handleButtonClick}
+        disabled={query.isLoading}
+      >
+        Load More
+      </Button>
+    </BlogContainer>
   );
 }

@@ -1,72 +1,72 @@
 import type { CSSInterpolation } from "@emotion/css";
 
 export const breakpoints = {
-  phone: {
+  xs: {
     lower: 0,
     upper: 599,
   },
-  tabletPortrait: {
+  sm: {
     lower: 600,
     upper: 899,
   },
-  tabletLandscape: {
+  md: {
     lower: 900,
     upper: 1199,
   },
-  desktop: {
+  lg: {
     lower: 1200,
     upper: 1799,
   },
-  largeDesktop: {
+  xl: {
     lower: 1800,
     upper: Infinity,
   },
 };
 
-export const phoneDown = (styles: CSSInterpolation) => {
+export const xsDown = (styles: CSSInterpolation) => {
   return {
-    [`@media (max-width: ${breakpoints.phone.upper}px)`]: styles,
+    [`@media (max-width: ${breakpoints.xs.upper}px)`]: styles,
   };
 };
 
-export const tabletPortraitUp = (styles: CSSInterpolation) => {
+export const smUp = (styles: CSSInterpolation) => {
   return {
-    [`@media (min-width: ${breakpoints.tabletPortrait.lower}px)`]: styles,
+    [`@media (min-width: ${breakpoints.sm.lower}px)`]: styles,
   };
 };
 
-export const tabletPortraitDown = (styles: CSSInterpolation) => {
+export const smDown = (styles: CSSInterpolation) => {
   return {
-    [`@media (max-width: ${breakpoints.tabletPortrait.upper}px)`]: styles,
+    [`@media (max-width: ${breakpoints.sm.upper}px)`]: styles,
   };
 };
 
-export const tabletLandscapeUp = (styles: CSSInterpolation) => {
+export const mdUp = (styles: CSSInterpolation) => {
   return {
-    [`@media (min-width: ${breakpoints.tabletLandscape.lower}px)`]: styles,
+    [`@media (min-width: ${breakpoints.md.lower}px)`]: styles,
   };
 };
 
-export const tabletLandscapeDown = (styles: CSSInterpolation) => {
+export const mdDown = (styles: CSSInterpolation) => {
   return {
-    [`@media (max-width: ${breakpoints.tabletLandscape.upper}px)`]: styles,
+    [`@media (max-width: ${breakpoints.md.upper}px)`]: styles,
   };
 };
 
-export const desktopUp = (styles: CSSInterpolation) => {
+export const lgUp = (styles: CSSInterpolation) => {
   return {
-    [`@media (min-width: ${breakpoints.desktop.lower}px)`]: styles,
+    [`@media (min-width: ${breakpoints.lg.lower}px)`]: styles,
   };
 };
 
-export const desktopDown = (styles: CSSInterpolation) => {
+export const lgDown = (styles: CSSInterpolation) => {
   return {
-    [`@media (max-width: ${breakpoints.desktop.upper}px)`]: styles,
+    [`@media (max-width: ${breakpoints.lg.upper}px)`]: styles,
   };
 };
 
-export const largeDesktopUp = (styles: CSSInterpolation) => {
+export const xlUp = (styles: CSSInterpolation) => {
   return {
-    [`@media (min-width: ${breakpoints.largeDesktop.lower}px)`]: styles,
+    [`@media (min-width: ${breakpoints.xl.lower}px)`]: styles,
   };
 };
