@@ -13,7 +13,7 @@ import {
   useQuery,
 } from "#/lib/graphql.ts";
 import { Container } from "#/components/Container.tsx";
-import { Button } from "#/components/button/Button.tsx";
+import { Button } from "#/components/Button.tsx";
 
 export type PostListIslandProps = {
   dehydratedState: DehydratedState;
