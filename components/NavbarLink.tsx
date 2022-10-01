@@ -1,4 +1,5 @@
-import { withClassNames } from "#/lib/classNames.ts";
+import { css, cx } from "#/lib/emotion.ts";
+import { color } from "#/styles/theme.ts";
 
 export type NavbarLinkProps = {
   href: string;
@@ -9,11 +10,24 @@ export type NavbarLinkProps = {
 export function NavbarLink({ label, href, isActive }: NavbarLinkProps) {
   return (
     <a
-      {...withClassNames(
-        "flex flex-col w-20 h-20",
-        "justify-center items-center",
-        isActive && "bg-white bg-opacity-20",
-      )}
+      className={cx(css({
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft: "10px",
+        paddingRight: "10px",
+        // width: "64px",
+        height: "64px",
+
+        backgroundColor: color.primary.dark,
+        color: color.white,
+        textDecoration: "none",
+
+        ...(isActive && {
+          backgroundColor: color.primary.light,
+        }),
+      }))}
       href={href}
     >
       {label}

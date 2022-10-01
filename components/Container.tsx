@@ -1,16 +1,24 @@
+import { css, cx } from "#/lib/emotion.ts";
 import { ChildrenProps } from "#/lib/types.ts";
-import { ClassNameProps, withClassNames } from "#/lib/classNames.ts";
+import { ClassNameProps } from "#/lib/classNames.ts";
+import { breakpoints, tabletPortraitUp } from "#/lib/style/breakpoints.ts";
 
 export type ContainerProps = ChildrenProps & ClassNameProps;
 
-export function Container({ children, className }: ContainerProps) {
+export function Container({ children }: ContainerProps) {
   return (
     <div
-      {...withClassNames(
-        "container",
-        "mx-auto",
-        className,
-      )}
+      className={cx(css({
+        display: "block",
+        marginLeft: "auto",
+        marginRight: "auto",
+        boxSizing: "border-box",
+        width: "100%",
+
+        ...tabletPortraitUp({
+          maxWidth: `${breakpoints.desktop.upper}px`,
+        }),
+      }))}
     >
       {children}
     </div>

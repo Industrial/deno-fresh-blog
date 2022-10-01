@@ -1,3 +1,5 @@
+import "#/styles/global-styles.ts";
+
 import { DehydratedState } from "react-query";
 
 import { ChildrenProps } from "#/lib/types.ts";

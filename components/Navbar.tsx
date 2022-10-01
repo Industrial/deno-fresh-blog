@@ -1,12 +1,24 @@
-import { Router } from "#/contexts/Router.ts";
 import { NavbarLink } from "#/components/NavbarLink.tsx";
+import { Router } from "#/contexts/Router.ts";
+import { css, cx } from "#/lib/emotion.ts";
+import { color, spacing } from "#/styles/theme.ts";
 
 export function Navbar() {
   return (
     <Router.Consumer>
       {({ route }) => {
         return (
-          <div className="flex justify-center items-center h-20 bg-blue-400 text-white">
+          <div
+            className={cx(css({
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: `${spacing(8)}px`,
+
+              backgroundColor: color.primary.dark,
+              color: color.white,
+            }))}
+          >
             <NavbarLink
               label="Blog"
               href="/"

@@ -1,6 +1,7 @@
 {
   "imports": {
     "std/": "https://deno.land/std@0.156.0/",
+    "https://deno.land/std@0.158.0/node/vm.ts": "./lib/std/node/vm.ts",
 
     "$fresh/": "https://deno.land/x/fresh@1.1.0/",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
@@ -12,7 +13,22 @@
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
 
-    "react": "https://esm.sh/preact/compat?dev",
+    "react": "https://esm.sh/react@18.2.0?dev",
+    "react-dom": "https://esm.sh/react-dom@18.2.0?dev",
+    "react-dom/server": "https://esm.sh/preact@10.10.6/compat?dev",
+    "react-dom/test-utils": "https://esm.sh/preact@10.10.6/test-utils?dev",
+
+    "@testing-library/preact": "https://esm.sh/@testing-library/preact@3.2.2?dev",
+    "deno_dom": "https://deno.land/x/deno_dom@v0.1.35-alpha/deno-dom-wasm.ts",
+    "jsdom": "https://esm.sh/jsdom@20.0.0?dev",
+    "unittest": "https://deno.land/x/unitest@v1.0.0-beta.82/mod.ts",
+    "react-test-renderer": "https://esm.sh/react-test-renderer",
+
+    "@emotion/css": "https://esm.sh/@emotion/css@11.10.0",
+    "@emotion/css/create-instance": "https://esm.sh/@emotion/css@11.10.0/create-instance",
+    "@emotion/react": "https://esm.sh/@emotion/react",
+    "@emotion/server/create-instance": "https://esm.sh/@emotion/server@11.10.0/create-instance",
+    "@emotion/cache": "https://esm.sh/@emotion/cache@11.10.3",
 
     "comrak": "https://deno.land/x/comrak@0.1.1/mod.ts",
     "react-query": "https://esm.sh/react-query@3.39.2",

@@ -12,6 +12,7 @@ import {
   getFetcherOptions,
   useQuery,
 } from "#/lib/graphql.ts";
+import { Container } from "../components/Container.tsx";
 
 export type PostListIslandProps = {
   dehydratedState: DehydratedState;
@@ -55,15 +56,17 @@ export default function PostListIsland(
   }
 
   return (
-    <div className="mt-0 sm:mt-5 md:mt-10 xl:mt-40">
-      <div className="flex flex-col">
-        {query.post.map((entry) => {
-          return <PostListEntry post={entry} />;
-        })}
+    <Container>
+      <div className="mt-0 xl:mt-40">
+        <div className="flex flex-col">
+          {query.post.map((entry) => {
+            return <PostListEntry post={entry} />;
+          })}
+        </div>
+        <div>
+          <button onClick={handleButtonClick}>Load More</button>
+        </div>
       </div>
-      <div>
-        <button onClick={handleButtonClick}>Load More</button>
-      </div>
-    </div>
+    </Container>
   );
 }
