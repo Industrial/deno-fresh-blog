@@ -1,10 +1,17 @@
 import { ChildrenProps } from "#/lib/types.ts";
+import { ClassNameProps, withClassNames } from "#/lib/classNames.ts";
 
-export type ContainerProps = ChildrenProps;
+export type ContainerProps = ChildrenProps & ClassNameProps;
 
-export function Container({ children }: ContainerProps) {
+export function Container({ children, className }: ContainerProps) {
   return (
-    <div className="container mx-auto">
+    <div
+      {...withClassNames(
+        "container",
+        "mx-auto",
+        className,
+      )}
+    >
       {children}
     </div>
   );
