@@ -35,4 +35,11 @@ export const color = {
     main: "#2e7d32",
     dark: "#1b5e20",
   },
+  action: {
+    disabled: {
+      text: "#eeeeee",
+      border: "#eeeeee",
+      background: "#cccccc",
+    },
+  },
 };

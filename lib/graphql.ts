@@ -52,15 +52,31 @@ export function useQuery<Q, V>({
   key: QueryKey;
   variables: V;
 }) {
-  const [query, setQuery] = useState<Q | undefined>(
-    client.getQueryData<Q>(key),
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [data, setData] = useState<Q | null>(
+    client.getQueryData<Q>(key) || null,
   );
 
   useEffect(() => {
     (async () => {
-      setQuery(await client.fetchQuery<Q>(key, fetcher));
+      try {
+        setIsLoading(true);
+        const newData = await client.fetchQuery<Q>(key, fetcher);
+        setIsLoading(false);
+        setError(null);
+        setData(newData);
+      } catch (error: unknown) {
+        setIsLoading(false);
+        setError(error as Error);
+        setData(null);
+      }
     })();
   }, [variables]);
 
-  return query;
+  return {
+    isLoading,
+    error,
+    data,
+  };
 }

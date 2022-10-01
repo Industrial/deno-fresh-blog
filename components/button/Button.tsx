@@ -1,8 +1,8 @@
-import { ChildrenProps } from "#/lib/types.ts";
-import { breakpoints, tabletPortraitUp } from "#/style/breakpoints.ts";
-import { css, cx } from "#/lib/emotion.ts";
-import { color, spacing } from "#/style/theme.ts";
 import { JSXInternal } from "https://esm.sh/v94/preact@10.10.6/src/jsx.d.ts";
+
+import { ChildrenProps } from "#/lib/types.ts";
+import { color, spacing } from "#/style/theme.ts";
+import { css, cx } from "#/lib/emotion.ts";
 
 export type ButtonProps =
   & ChildrenProps
@@ -12,7 +12,7 @@ export type ButtonProps =
   };
 
 export function Button(
-  { children, variant = "primary", ...props }: ButtonProps,
+  { children, variant = "primary", disabled, ...props }: ButtonProps,
 ) {
   return (
     <button
@@ -39,7 +39,13 @@ export function Button(
           border: "none",
         }),
 
-        "&:hover": {
+        "&:disabled": {
+          backgroundColor: color.action.disabled.background,
+          border: `1px solid ${color.action.disabled.border}`,
+          color: color.action.disabled.text,
+        },
+
+        "&:enabled:hover": {
           cursor: "pointer",
 
           ...(variant === "primary" && {
@@ -55,7 +61,7 @@ export function Button(
           }),
         },
 
-        "&:active": {
+        "&:enabled:active": {
           ...(variant === "primary" && {
             backgroundColor: color.primary.dark,
           }),
@@ -69,6 +75,7 @@ export function Button(
           }),
         },
       }))}
+      disabled={disabled}
       {...props}
     >
       {children}

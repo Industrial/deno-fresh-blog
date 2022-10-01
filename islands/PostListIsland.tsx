@@ -49,33 +49,27 @@ export default function PostListIsland(
 
   function handleButtonClick() {
     setLimit(limit + 1);
-    // setOffset(offset + 1);
   }
 
-  if (!query) {
-    return null;
-  }
+  console.log("query", query);
+  console.log("isLoading", query.isLoading);
 
   return (
     <Container>
       <div className="mt-0 xl:mt-40">
         <div className="flex flex-col">
-          {query.post.map((entry) => {
+          {query.data?.post.map((entry) => {
             return <PostListEntry post={entry} />;
           })}
         </div>
         <div>
-          <Button variant="primary" onClick={handleButtonClick}>
+          <Button
+            variant="primary"
+            onClick={handleButtonClick}
+            disabled={query.isLoading}
+          >
             Load More
           </Button>
-          {
-            /* <Button variant="secondary" onClick={handleButtonClick}>
-            Load More
-          </Button>
-          <Button variant="text" onClick={handleButtonClick}>
-            Load More
-          </Button> */
-          }
         </div>
       </div>
     </Container>
