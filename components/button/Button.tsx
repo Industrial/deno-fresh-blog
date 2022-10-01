@@ -54,6 +54,30 @@ export function Button(
             color: color.primary.light,
           }),
         },
+
+        "&:active": {
+          ...(variant === "primary" && {
+            backgroundColor: color.primary.dark,
+          }),
+
+          ...(variant === "secondary" && {
+            backgroundColor: color.secondary.dark,
+          }),
+
+          ...(variant === "text" && {
+            color: color.primary.dark,
+          }),
+        },
+
+        "&:focus": {
+          ...(variant === "primary" && {
+            backgroundColor: color.primary.light,
+          }),
+
+          ...(variant === "secondary" && {
+            backgroundColor: color.secondary.light,
+          }),
+        },
       }))}
       {...props}
     >
