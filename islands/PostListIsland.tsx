@@ -68,6 +68,14 @@ export default function PostListIsland(
           <Button variant="primary" onClick={handleButtonClick}>
             Load More
           </Button>
+          {
+            /* <Button variant="secondary" onClick={handleButtonClick}>
+            Load More
+          </Button>
+          <Button variant="text" onClick={handleButtonClick}>
+            Load More
+          </Button> */
+          }
         </div>
       </div>
     </Container>
