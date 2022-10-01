@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import {
   DehydratedState,
   hydrate,
@@ -58,7 +58,15 @@ export function useQuery<Q, V>({
     client.getQueryData<Q>(key) || null,
   );
 
+  const firstRun = useRef<boolean>(true);
   useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;
+      if (data) {
+        return;
+      }
+    }
+
     (async () => {
       try {
         setIsLoading(true);
@@ -72,7 +80,7 @@ export function useQuery<Q, V>({
         setData(null);
       }
     })();
-  }, [variables]);
+  }, [variables, firstRun]);
 
   return {
     isLoading,
