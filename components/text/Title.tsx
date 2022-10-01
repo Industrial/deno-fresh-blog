@@ -1,20 +1,27 @@
 import { ChildrenProps } from "#/lib/types.ts";
-import { ClassNameProps, withClassNames } from "#/lib/classNames.ts";
+import { ClassNameProps } from "#/lib/classNames.ts";
+import { css, cx } from "#/lib/emotion.ts";
+import { smUp } from "#/style/breakpoints.ts";
 
 export type TitleProps = ClassNameProps & ChildrenProps;
 
 export function Title({ className, children }: TitleProps) {
   return (
-    <div
-      {...withClassNames(
-        "font-bold",
-        "text-3xl",
-        "lg:text-4xl",
-        "xl:text-5xl",
+    <span
+      className={cx(
+        css({
+          fontWeight: "bold",
+          fontSize: "24px",
+          flex: 1,
+
+          ...smUp({
+            fontSize: "32px",
+          }),
+        }),
         className,
       )}
     >
       {children}
-    </div>
+    </span>
   );
 }

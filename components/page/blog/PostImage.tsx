@@ -1,4 +1,5 @@
 import { css, cx } from "#/lib/emotion.ts";
+import { lgUp, smUp } from "#/style/breakpoints.ts";
 
 export type PostImageProps = {
   href?: string;
@@ -8,13 +9,20 @@ export type PostImageProps = {
 export function PostImage({ href, src }: PostImageProps) {
   const image = (
     <img
-      // className="w-full xl:w-full xl:h-full"
       className={cx(
         css({
-          maxWidth: "640px",
-          maxHeight: "360px",
           width: "100%",
-          height: "auto",
+
+          ...smUp({
+            // marginLeft: "auto",
+            // marginRight: "auto",
+            // width: "640px",
+            // maxHeight: "480px",
+          }),
+
+          ...lgUp({
+            width: "100%",
+          }),
         }),
       )}
       src={src}
@@ -25,7 +33,15 @@ export function PostImage({ href, src }: PostImageProps) {
     <div>
       {href
         ? (
-          <a href={href}>
+          <a
+            href={href}
+            className={cx(
+              css({
+                display: "block",
+                width: "100%",
+              }),
+            )}
+          >
             {image}
           </a>
         )

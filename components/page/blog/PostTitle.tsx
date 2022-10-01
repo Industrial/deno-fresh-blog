@@ -1,4 +1,7 @@
 import { Title } from "#/components/text/Title.tsx";
+import { color } from "#/style/theme.ts";
+import { css, cx } from "#/lib/emotion.ts";
+import { smUp } from "#/style/breakpoints.ts";
 
 export type PostTitleProps = {
   href?: string;
@@ -7,14 +10,20 @@ export type PostTitleProps = {
 
 export function PostTitle({ href, text }: PostTitleProps) {
   return (
-    <Title className="mt-0 xl:mt-20 pb-1 sm:pb-2 md:pb-3 xl:pb-5">
-      {href
-        ? (
-          <a href={href}>
-            {text}
-          </a>
-        )
-        : text}
-    </Title>
+    <a
+      className={cx(
+        css({
+          color: color.black,
+          textDecoration: "none",
+
+          ...smUp({
+            fontSize: "32px",
+          }),
+        }),
+      )}
+      href={href}
+    >
+      <Title>{text}</Title>
+    </a>
   );
 }

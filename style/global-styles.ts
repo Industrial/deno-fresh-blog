@@ -28,7 +28,7 @@ injectGlobal({
   "body": {
     minHeight: "100vh",
     textRendering: "optimizeSpeed",
-    lineHeight: 1.5,
+    // lineHeight: 1.5,
   },
 
   /* A elements that don't have a class get default styles */
