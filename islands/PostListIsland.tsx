@@ -51,9 +51,6 @@ export default function PostListIsland(
     setLimit(limit + 1);
   }
 
-  console.log("query", query);
-  console.log("isLoading", query.isLoading);
-
   return (
     <Container>
       <div className="mt-0 xl:mt-40">
