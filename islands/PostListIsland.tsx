@@ -1,8 +1,8 @@
 import { DehydratedState } from "react-query";
 import { useMemo, useState } from "preact/hooks";
 
-import { BlogContainer } from "#/components/page/blog/BlogContainer.tsx";
 import { Button } from "#/components/Button.tsx";
+import { Container } from "../components/Container.tsx";
 import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
 import {
   PostQuery,
@@ -14,6 +14,9 @@ import {
   getFetcherOptions,
   useQuery,
 } from "#/lib/graphql.ts";
+import { css, cx } from "#/lib/emotion.ts";
+import { smUp } from "#/style/breakpoints.ts";
+import { spacing } from "#/style/theme.ts";
 
 export type PostListIslandProps = {
   dehydratedState: DehydratedState;
@@ -52,7 +55,15 @@ export default function PostListIsland(
   }
 
   return (
-    <BlogContainer>
+    <Container
+      className={cx(
+        css({
+          ...smUp({
+            marginTop: `${spacing(10)}px`,
+          }),
+        }),
+      )}
+    >
       {query.data?.post.map((entry) => {
         return <PostListEntry post={entry} />;
       })}
@@ -63,6 +74,6 @@ export default function PostListIsland(
       >
         Load More
       </Button>
-    </BlogContainer>
+    </Container>
   );
 }
