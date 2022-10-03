@@ -1,6 +1,6 @@
 import { DehydratedState } from "react-query";
 
-import { Container } from "#/components/Container.tsx";
+import { Container } from "#/components/grid/Container.tsx";
 import { PostContent } from "#/components/page/blog/PostContent.tsx";
 import { PostDate } from "#/components/page/blog/PostDate.tsx";
 import { PostImage } from "#/components/page/blog/PostImage.tsx";

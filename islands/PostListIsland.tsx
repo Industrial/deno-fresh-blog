@@ -2,7 +2,7 @@ import { DehydratedState } from "react-query";
 import { useMemo, useState } from "preact/hooks";
 
 import { Button } from "#/components/Button.tsx";
-import { Container } from "../components/Container.tsx";
+import { Container } from "../components/grid/Container.tsx";
 import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
 import {
   PostQuery,

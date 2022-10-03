@@ -1,12 +1,13 @@
 import { ArrayElement } from "#/lib/types.ts";
 import { BodyText } from "#/components/text/BodyText.tsx";
+import { Column } from "#/components/grid/Column.tsx";
+import { Container } from "#/components/grid/Container.tsx";
 import { PostDate } from "#/components/page/blog/PostDate.tsx";
 import { PostImage } from "#/components/page/blog/PostImage.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
 import { PostTitle } from "#/components/page/blog/PostTitle.tsx";
+import { column } from "#/style/grid.ts";
 import { css, cx } from "#/lib/emotion.ts";
-import { smUp, xlUp } from "#/style/breakpoints.ts";
-import { spacing } from "#/style/theme.ts";
 
 export type PostListEntryProps = {
   post: ArrayElement<PostQuery["post"]>;
@@ -14,47 +15,14 @@ export type PostListEntryProps = {
 
 export function PostListEntry({ post }: PostListEntryProps) {
   return (
-    <div
-      className={cx(
-        css({
-          display: "flex",
-          flexDirection: "column",
-
-          ...smUp({
-            marginTop: `${spacing(5)}px`,
-          }),
-
-          ...xlUp({
-            flexDirection: "row",
-
-            marginTop: `${spacing(10)}px`,
-          }),
-        }),
-      )}
-    >
-      <div
-        className={cx(
-          css({
-            flex: 1,
-          }),
-        )}
-      >
+    <Container>
+      <Column lg={6}>
         <PostImage
           href={`/post/${post.slug}`}
           src="https://loremflickr.com/640/360"
         />
-      </div>
-      <div
-        className={cx(
-          css({
-            flex: 1,
-
-            ...xlUp({
-              paddingLeft: `var(--gutter)`,
-            }),
-          }),
-        )}
-      >
+      </Column>
+      <Column lg={6}>
         <PostDate date={new Date(post.date_created)} />
         <PostTitle
           href={`/post/${post.slug}`}
@@ -71,7 +39,7 @@ export function PostListEntry({ post }: PostListEntryProps) {
             Read more
           </a>
         </BodyText>
-      </div>
-    </div>
+      </Column>
+    </Container>
   );
 }

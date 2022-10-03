@@ -5,7 +5,7 @@ import { JSDOM } from "npm:jsdom";
 // import { DOMParser } from "deno_dom";
 import { render, screen } from "@testing-library/preact";
 
-import { Container } from "#/components/Container.tsx";
+import { Container } from "#/components/grid/Container.tsx";
 
 Deno.test("setup", (t) => {
   const html = "<!DOCTYPE html>";
