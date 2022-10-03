@@ -18,8 +18,8 @@ export function Container({ children, className }: ContainerProps) {
           width: "100%",
 
           ...smUp({
-            paddingLeft: `${spacing(3)}px`,
-            paddingRight: `${spacing(3)}px`,
+            paddingLeft: `var(--gutter)`,
+            paddingRight: `var(--gutter)`,
             maxWidth: `${breakpoints.lg.upper}px`,
           }),
         }),

@@ -1,4 +1,5 @@
 import { injectGlobal } from "#/lib/emotion.ts";
+import { mdUp, smUp } from "#/style/breakpoints.ts";
 
 injectGlobal({
   // https://piccalil.li/blog/a-modern-css-reset/
@@ -67,6 +68,36 @@ injectGlobal({
 });
 
 injectGlobal({
+  ":root": {
+    "--gutter": "20px",
+    "--t0": "2.67rem",
+    "--t1": "2.67rem",
+    "--t2": "2rem",
+    "--t3": "1.67rem",
+    "--p0": "1.5rem",
+    "--p1": "1.167rem",
+    "--p2": "1rem",
+    "--p3": "1rem",
+
+    ...smUp({
+      "--gutter": "3vw",
+      "--t0": "4.5rem",
+      "--t1": "4rem",
+      "--t2": "2.5rem",
+      "--t3": "2rem",
+      "--p0": "1.687rem",
+      "--p1": "1.25rem",
+      "--p2": "1rem",
+      "--p3": "0.75rem",
+    }),
+
+    ...mdUp({
+      "--gutter": "3.125rem",
+    }),
+    // ...lgUp({}),
+    // ...xlUp({}),
+  },
+
   "*": {
     fontFamily: [
       "-apple-system",
@@ -80,5 +111,21 @@ injectGlobal({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(","),
+  },
+
+  h1: {
+    fontSize: "var(--t0)",
+  },
+  h2: {
+    fontSize: "var(--t1)",
+  },
+  h3: {
+    fontSize: "var(--t2)",
+  },
+  h4: {
+    fontSize: "var(--t3)",
+  },
+  p: {
+    fontSize: "var(--p1)",
   },
 });

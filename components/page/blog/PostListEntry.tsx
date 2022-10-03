@@ -48,11 +48,21 @@ export function PostListEntry({ post }: PostListEntryProps) {
         className={cx(
           css({
             flex: 1,
+
+            ...xlUp({
+              paddingLeft: `var(--gutter)`,
+            }),
           }),
         )}
       >
         <PostDate date={new Date(post.date_created)} />
-        <PostTitle href={`/post/${post.slug}`} text={post.title} />
+        <PostTitle
+          href={`/post/${post.slug}`}
+          text={post.title}
+          className={cx(
+            css({}),
+          )}
+        />
         <BodyText>
           {String(post.intro)}
         </BodyText>

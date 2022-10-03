@@ -1,27 +1,16 @@
 import { ChildrenProps } from "#/lib/types.ts";
 import { ClassNameProps } from "#/lib/classNames.ts";
-import { css, cx } from "#/lib/emotion.ts";
-import { smUp } from "#/style/breakpoints.ts";
 
-export type TitleProps = ClassNameProps & ChildrenProps;
+export type TitleProps = ClassNameProps & ChildrenProps & {
+  variant?: "h1" | "h2" | "h3" | "h4";
+};
 
-export function Title({ className, children }: TitleProps) {
+export function Title({ className, children, variant = "h1" }: TitleProps) {
+  const Component = variant;
+
   return (
-    <span
-      className={cx(
-        css({
-          fontWeight: "bold",
-          fontSize: "24px",
-          flex: 1,
-
-          ...smUp({
-            fontSize: "32px",
-          }),
-        }),
-        className,
-      )}
-    >
+    <Component className={className}>
       {children}
-    </span>
+    </Component>
   );
 }
