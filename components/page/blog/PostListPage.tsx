@@ -1,5 +1,5 @@
 import { Button } from "#/components/Button.tsx";
-import { Column } from "#/components/grid/mod.ts";
+import { Column, Row } from "#/components/grid/mod.ts";
 import { Container } from "#/components/grid/mod.ts";
 import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
@@ -28,36 +28,38 @@ export function PostListPage({ query, onLoadMore }: PostListPageProps) {
         }),
       )}
     >
-      {query.data?.post.map((entry) => {
-        return (
-          <PostListEntry
-            post={entry}
+      <Row>
+        {query.data?.post.map((entry) => {
+          return (
+            <PostListEntry
+              post={entry}
+              className={cx(
+                css({
+                  marginBottom: "2em",
+                }),
+              )}
+            />
+          );
+        })}
+        <Column>
+          <Button
+            variant="primary"
             className={cx(
               css({
+                marginLeft: "auto",
+                marginRight: "auto",
                 marginBottom: "2em",
               }),
             )}
-          />
-        );
-      })}
-      <Column>
-        <Button
-          variant="primary"
-          className={cx(
-            css({
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginBottom: "2em",
-            }),
-          )}
-          onClick={() => {
-            handleLoadMore();
-          }}
-          disabled={query.isLoading}
-        >
-          Load More
-        </Button>
-      </Column>
+            onClick={() => {
+              handleLoadMore();
+            }}
+            disabled={query.isLoading}
+          >
+            Load More
+          </Button>
+        </Column>
+      </Row>
     </Container>
   );
 }
