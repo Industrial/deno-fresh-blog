@@ -1,29 +1,24 @@
 import { css, cx } from "#/lib/emotion.ts";
 import { lgUp, smUp } from "#/style/breakpoints.ts";
+import { ClassNameProps } from "../../../lib/classNames.ts";
 
 export type PostImageProps = {
   href?: string;
   src: string;
-};
+} & ClassNameProps;
 
-export function PostImage({ href, src }: PostImageProps) {
+export function PostImage({ href, src, className }: PostImageProps) {
   const image = (
     <img
       className={cx(
         css({
           width: "100%",
 
-          ...smUp({
-            // marginLeft: "auto",
-            // marginRight: "auto",
-            // width: "640px",
-            // maxHeight: "480px",
-          }),
-
           ...lgUp({
             width: "100%",
           }),
         }),
+        className,
       )}
       src={src}
     />

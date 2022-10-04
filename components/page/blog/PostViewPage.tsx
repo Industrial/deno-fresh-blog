@@ -52,10 +52,31 @@ export function PostViewPage({
         }),
       )}
     >
-      <PostTitle text={post.title} />
-      <PostDate date={new Date(post.date_created)} />
       <PostImage src="https://loremflickr.com/640/360" />
-      <PostContent value={String(post.content)} />
+      <PostTitle
+        text={post.title}
+        className={cx(
+          css({
+            marginTop: "1em",
+          }),
+        )}
+      />
+      <PostDate
+        date={new Date(post.date_created)}
+        className={cx(
+          css({
+            marginTop: "1em",
+          }),
+        )}
+      />
+      <PostContent
+        value={String(post.content)}
+        className={cx(
+          css({
+            marginTop: "1em",
+          }),
+        )}
+      />
     </Container>
   );
 }

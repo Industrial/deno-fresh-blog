@@ -5,7 +5,7 @@ import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
 import { UseQuery } from "#/lib/graphql.ts";
 import { css, cx } from "#/lib/emotion.ts";
-import { lgUp } from "#/style/breakpoints.ts";
+import { lgUp, smUp } from "#/style/breakpoints.ts";
 import { spacing } from "#/style/theme.ts";
 
 export type PostListPageProps = {
@@ -29,7 +29,16 @@ export function PostListPage({ query, onLoadMore }: PostListPageProps) {
       )}
     >
       {query.data?.post.map((entry) => {
-        return <PostListEntry post={entry} />;
+        return (
+          <PostListEntry
+            post={entry}
+            className={cx(
+              css({
+                marginBottom: "2em",
+              }),
+            )}
+          />
+        );
       })}
       <Row>
         <Column>

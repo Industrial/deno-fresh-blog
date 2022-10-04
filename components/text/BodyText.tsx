@@ -1,10 +1,11 @@
 import { ChildrenProps } from "#/lib/types.ts";
+import { ClassNameProps } from "#/lib/classNames.ts";
 
-export type BodyTextProps = ChildrenProps;
+export type BodyTextProps = ChildrenProps & ClassNameProps;
 
-export function BodyText({ children }: BodyTextProps) {
+export function BodyText({ children, className }: BodyTextProps) {
   return (
-    <div className="font-normal lg:text-lg xl:text-xl">
+    <div className={className}>
       <p>{children}</p>
     </div>
   );

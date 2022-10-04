@@ -13,9 +13,9 @@ export type PostListEntryProps = {
   post: ArrayElement<PostQuery["post"]>;
 } & ClassNameProps;
 
-export function PostListEntry({ post }: PostListEntryProps) {
+export function PostListEntry({ post, className }: PostListEntryProps) {
   return (
-    <Row>
+    <Row className={className}>
       <Column xl={6}>
         <PostImage
           href={`/post/${post.slug}`}
@@ -38,18 +38,7 @@ export function PostListEntry({ post }: PostListEntryProps) {
           <PostTitle
             href={`/post/${post.slug}`}
             text={post.title}
-            className={cx(
-              css({}),
-            )}
           />
-          <BodyText>
-            {String(post.intro)}
-          </BodyText>
-          <BodyText>
-            <a href={`/post/${post.slug}`} className="text-underline">
-              Read more
-            </a>
-          </BodyText>
           <PostDate
             date={new Date(post.date_created)}
             className={cx(
@@ -63,6 +52,25 @@ export function PostListEntry({ post }: PostListEntryProps) {
               }),
             )}
           />
+          <BodyText
+            className={cx(
+              css({
+                marginTop: "1em",
+
+                ...smUp({
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                }),
+              }),
+            )}
+          >
+            {String(post.intro)}
+          </BodyText>
+          <BodyText>
+            <a href={`/post/${post.slug}`} className="text-underline">
+              Read more
+            </a>
+          </BodyText>
         </div>
       </Column>
     </Row>
