@@ -15,7 +15,7 @@ injectGlobal({
 
     "--grid-gutter-width": `0px`,
     ...smUp({
-      "--grid-gutter-width": `3vw`,
+      "--grid-gutter-width": `1.5vw`,
     }),
   },
 });
