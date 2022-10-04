@@ -1,5 +1,6 @@
 import { ArrayElement } from "#/lib/types.ts";
 import { BodyText } from "#/components/text/BodyText.tsx";
+import { ClassNameProps } from "#/lib/classNames.ts";
 import { Column, Row } from "#/components/grid/mod.ts";
 import { PostDate } from "#/components/page/blog/PostDate.tsx";
 import { PostImage } from "#/components/page/blog/PostImage.tsx";
@@ -10,7 +11,7 @@ import { smUp } from "#/style/breakpoints.ts";
 
 export type PostListEntryProps = {
   post: ArrayElement<PostQuery["post"]>;
-};
+} & ClassNameProps;
 
 export function PostListEntry({ post }: PostListEntryProps) {
   return (
@@ -34,7 +35,6 @@ export function PostListEntry({ post }: PostListEntryProps) {
             }),
           )}
         >
-          <PostDate date={new Date(post.date_created)} />
           <PostTitle
             href={`/post/${post.slug}`}
             text={post.title}
@@ -50,6 +50,19 @@ export function PostListEntry({ post }: PostListEntryProps) {
               Read more
             </a>
           </BodyText>
+          <PostDate
+            date={new Date(post.date_created)}
+            className={cx(
+              css({
+                marginTop: "1em",
+
+                ...smUp({
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                }),
+              }),
+            )}
+          />
         </div>
       </Column>
     </Row>

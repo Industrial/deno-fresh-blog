@@ -1,12 +1,13 @@
 import { formatDate } from "#/lib/format.ts";
+import { ClassNameProps } from "#/lib/classNames.ts";
 
 export type PostDateProps = {
   date: Date;
-};
+} & ClassNameProps;
 
-export function PostDate({ date }: PostDateProps) {
+export function PostDate({ date, className }: PostDateProps) {
   return (
-    <div className="xl:mb-10">
+    <div className={className}>
       {formatDate(date)}
     </div>
   );
