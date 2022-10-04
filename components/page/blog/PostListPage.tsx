@@ -1,11 +1,11 @@
 import { Button } from "#/components/Button.tsx";
-import { Column, Row } from "#/components/grid/mod.ts";
+import { Column } from "#/components/grid/mod.ts";
 import { Container } from "#/components/grid/mod.ts";
 import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
 import { UseQuery } from "#/lib/graphql.ts";
 import { css, cx } from "#/lib/emotion.ts";
-import { lgUp, smUp } from "#/style/breakpoints.ts";
+import { lgUp } from "#/style/breakpoints.ts";
 import { spacing } from "#/style/theme.ts";
 
 export type PostListPageProps = {
@@ -40,19 +40,24 @@ export function PostListPage({ query, onLoadMore }: PostListPageProps) {
           />
         );
       })}
-      <Row>
-        <Column>
-          <Button
-            variant="primary"
-            onClick={() => {
-              handleLoadMore();
-            }}
-            disabled={query.isLoading}
-          >
-            Load More
-          </Button>
-        </Column>
-      </Row>
+      <Column>
+        <Button
+          variant="primary"
+          className={cx(
+            css({
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginBottom: "2em",
+            }),
+          )}
+          onClick={() => {
+            handleLoadMore();
+          }}
+          disabled={query.isLoading}
+        >
+          Load More
+        </Button>
+      </Column>
     </Container>
   );
 }

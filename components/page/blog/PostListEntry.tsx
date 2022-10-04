@@ -1,7 +1,7 @@
 import { ArrayElement } from "#/lib/types.ts";
 import { BodyText } from "#/components/text/BodyText.tsx";
 import { ClassNameProps } from "#/lib/classNames.ts";
-import { Column, Row } from "#/components/grid/mod.ts";
+import { Column } from "#/components/grid/mod.ts";
 import { PostDate } from "#/components/page/blog/PostDate.tsx";
 import { PostImage } from "#/components/page/blog/PostImage.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
@@ -15,7 +15,7 @@ export type PostListEntryProps = {
 
 export function PostListEntry({ post, className }: PostListEntryProps) {
   return (
-    <Row className={className}>
+    <div className={className}>
       <Column xl={6}>
         <PostImage
           href={`/post/${post.slug}`}
@@ -73,6 +73,6 @@ export function PostListEntry({ post, className }: PostListEntryProps) {
           </BodyText>
         </div>
       </Column>
-    </Row>
+    </div>
   );
 }

@@ -5,76 +5,83 @@ import { color, spacing } from "#/style/theme.ts";
 import { css, cx } from "#/lib/emotion.ts";
 
 export type ButtonProps =
-  & ChildrenProps
-  & JSXInternal.HTMLAttributes<HTMLButtonElement>
   & {
     variant?: "primary" | "secondary" | "text";
-  };
+  }
+  & ChildrenProps
+  & JSXInternal.HTMLAttributes<HTMLButtonElement>;
 
-export function Button(
-  { children, variant = "primary", disabled, ...props }: ButtonProps,
-) {
+export function Button({
+  children,
+  variant = "primary",
+  disabled,
+  className,
+  ...props
+}: ButtonProps) {
   return (
     <button
-      className={cx(css({
-        display: "block",
-        padding: `${spacing(1)}px`,
+      className={cx(
+        css({
+          display: "block",
+          padding: `${spacing(1)}px`,
 
-        borderRadius: `5px`,
-        color: color.white,
-
-        ...(variant === "primary" && {
-          backgroundColor: color.primary.main,
-          border: `1px solid ${color.primary.dark}`,
-        }),
-
-        ...(variant === "secondary" && {
-          backgroundColor: color.secondary.main,
-          border: `1px solid ${color.secondary.dark}`,
-        }),
-
-        ...(variant === "text" && {
-          color: color.primary.main,
-          background: "none",
-          border: "none",
-        }),
-
-        "&:disabled": {
-          backgroundColor: color.action.disabled.background,
-          border: `1px solid ${color.action.disabled.border}`,
-          color: color.action.disabled.text,
-        },
-
-        "&:enabled:hover": {
-          cursor: "pointer",
+          borderRadius: `5px`,
+          color: color.white,
 
           ...(variant === "primary" && {
-            backgroundColor: color.primary.light,
+            backgroundColor: color.primary.main,
+            border: `1px solid ${color.primary.dark}`,
           }),
 
           ...(variant === "secondary" && {
-            backgroundColor: color.secondary.light,
+            backgroundColor: color.secondary.main,
+            border: `1px solid ${color.secondary.dark}`,
           }),
 
           ...(variant === "text" && {
-            color: color.primary.light,
-          }),
-        },
-
-        "&:enabled:active": {
-          ...(variant === "primary" && {
-            backgroundColor: color.primary.dark,
+            color: color.primary.main,
+            background: "none",
+            border: "none",
           }),
 
-          ...(variant === "secondary" && {
-            backgroundColor: color.secondary.dark,
-          }),
+          "&:disabled": {
+            backgroundColor: color.action.disabled.background,
+            border: `1px solid ${color.action.disabled.border}`,
+            color: color.action.disabled.text,
+          },
 
-          ...(variant === "text" && {
-            color: color.primary.dark,
-          }),
-        },
-      }))}
+          "&:enabled:hover": {
+            cursor: "pointer",
+
+            ...(variant === "primary" && {
+              backgroundColor: color.primary.light,
+            }),
+
+            ...(variant === "secondary" && {
+              backgroundColor: color.secondary.light,
+            }),
+
+            ...(variant === "text" && {
+              color: color.primary.light,
+            }),
+          },
+
+          "&:enabled:active": {
+            ...(variant === "primary" && {
+              backgroundColor: color.primary.dark,
+            }),
+
+            ...(variant === "secondary" && {
+              backgroundColor: color.secondary.dark,
+            }),
+
+            ...(variant === "text" && {
+              color: color.primary.dark,
+            }),
+          },
+        }),
+        className,
+      )}
       disabled={disabled}
       {...props}
     >

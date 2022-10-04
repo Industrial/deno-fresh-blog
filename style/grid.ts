@@ -55,6 +55,7 @@ export function row({
     }),
 
     display: "flex",
+    width: "100%",
     flexWrap: "wrap",
     marginRight: `calc(var(--grid-gutter-width) / -2)`,
     marginLeft: `calc(var(--grid-gutter-width) / -2)`,
@@ -78,7 +79,7 @@ export function column({
       "--grid-gutter-width": gutterWidth,
     }),
 
-    "--grid-columns": "var(--grid-columns-xs, --grid-total-columns)",
+    "--grid-columns": "var(--grid-columns-xs, var(--grid-total-columns))",
 
     display: "flex",
     flexDirection: "column",
