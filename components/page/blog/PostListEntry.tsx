@@ -1,12 +1,10 @@
 import { ArrayElement } from "#/lib/types.ts";
 import { BodyText } from "#/components/text/BodyText.tsx";
-import { Column } from "#/components/grid/Column.tsx";
-import { Container } from "#/components/grid/Container.tsx";
+import { Column, Row } from "#/components/grid/mod.ts";
 import { PostDate } from "#/components/page/blog/PostDate.tsx";
 import { PostImage } from "#/components/page/blog/PostImage.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
 import { PostTitle } from "#/components/page/blog/PostTitle.tsx";
-import { column } from "#/style/grid.ts";
 import { css, cx } from "#/lib/emotion.ts";
 
 export type PostListEntryProps = {
@@ -15,7 +13,7 @@ export type PostListEntryProps = {
 
 export function PostListEntry({ post }: PostListEntryProps) {
   return (
-    <Container>
+    <Row>
       <Column lg={6}>
         <PostImage
           href={`/post/${post.slug}`}
@@ -40,6 +38,6 @@ export function PostListEntry({ post }: PostListEntryProps) {
           </a>
         </BodyText>
       </Column>
-    </Container>
+    </Row>
   );
 }

@@ -3,35 +3,48 @@ import { ClassNameProps } from "#/lib/classNames.ts";
 import { column } from "#/style/grid.ts";
 import { css, cx } from "#/lib/emotion.ts";
 
-export type ColumnProps = ClassNameProps & ChildrenProps & {
-  totalColumns?: number;
-  xs?: number;
-  sm?: number;
-  md?: number;
-  lg?: number;
-  xl?: number;
-};
+export type ColumnProps =
+  & {
+    columns?: number;
+    xs?: number;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+  }
+  & ClassNameProps
+  & ChildrenProps;
 
 export function Column({
-  className,
-  children,
-  totalColumns = 12,
-  xs = totalColumns,
+  columns,
+  xs = columns,
   sm = xs,
   md = sm,
   lg = md,
   xl = lg,
+  className,
+  children,
 }: ColumnProps) {
   return (
     <div
       className={cx(
         css({
-          "--columns-xs": xs,
-          "--columns-sm": sm,
-          "--columns-md": md,
-          "--columns-lg": lg,
-          "--columns-xl": xl,
-          ...column(totalColumns),
+          ...(xs && {
+            "--grid-columns-xs": xs,
+          }),
+          ...(sm && {
+            "--grid-columns-sm": sm,
+          }),
+          ...(md && {
+            "--grid-columns-md": md,
+          }),
+          ...(lg && {
+            "--grid-columns-lg": lg,
+          }),
+          ...(xl && {
+            "--grid-columns-xl": xl,
+          }),
+          ...column({ columns }),
         }),
         className,
       )}

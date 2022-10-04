@@ -2,7 +2,7 @@ import { DehydratedState } from "react-query";
 import { useMemo, useState } from "preact/hooks";
 
 import { Button } from "#/components/Button.tsx";
-import { Container } from "../components/grid/Container.tsx";
+import { Container } from "#/components/grid/mod.ts";
 import { PostListEntry } from "#/components/page/blog/PostListEntry.tsx";
 import {
   PostQuery,
@@ -15,8 +15,9 @@ import {
   useQuery,
 } from "#/lib/graphql.ts";
 import { css, cx } from "#/lib/emotion.ts";
-import { smUp } from "#/style/breakpoints.ts";
+import { lgUp } from "#/style/breakpoints.ts";
 import { spacing } from "#/style/theme.ts";
+import { Row } from "../components/grid/Row.tsx";
 
 export type PostListIslandProps = {
   dehydratedState: DehydratedState;
@@ -58,7 +59,7 @@ export default function PostListIsland(
     <Container
       className={cx(
         css({
-          ...smUp({
+          ...lgUp({
             marginTop: `${spacing(10)}px`,
           }),
         }),
@@ -67,13 +68,15 @@ export default function PostListIsland(
       {query.data?.post.map((entry) => {
         return <PostListEntry post={entry} />;
       })}
-      <Button
-        variant="primary"
-        onClick={handleButtonClick}
-        disabled={query.isLoading}
-      >
-        Load More
-      </Button>
+      <Row>
+        <Button
+          variant="primary"
+          onClick={handleButtonClick}
+          disabled={query.isLoading}
+        >
+          Load More
+        </Button>
+      </Row>
     </Container>
   );
 }
