@@ -39,9 +39,12 @@ export const handler: Handlers<PostListPageProps> = {
   },
 };
 
-export default function PostListPage(
-  { params, route, url, data }: PageProps<PostListPageProps>,
-) {
+export default function PostList({
+  params,
+  route,
+  url,
+  data,
+}: PageProps<PostListPageProps>) {
   const { dehydratedState } = data;
 
   return (

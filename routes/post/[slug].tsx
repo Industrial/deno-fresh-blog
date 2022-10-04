@@ -7,7 +7,7 @@ import {
 } from "#/graphql/generated/client.ts";
 import { createGraphQLClient, getFetcherOptions } from "#/lib/graphql.ts";
 import { Application } from "#/components/Application.tsx";
-import { PostView } from "#/components/page/blog/PostView.tsx";
+import { PostViewPage } from "#/components/page/blog/PostViewPage.tsx";
 
 export type PostViewPageProps = {
   slug: string;
@@ -55,14 +55,17 @@ export const handler: Handlers<PostViewPageProps> = {
   },
 };
 
-export default function PostViewPage(
-  { params, route, url, data }: PageProps<PostViewPageProps>,
-) {
+export default function PostView({
+  params,
+  route,
+  url,
+  data,
+}: PageProps<PostViewPageProps>) {
   const { slug, dehydratedState } = data;
 
   return (
     <Application params={params} route={route} url={url} data={dehydratedState}>
-      <PostView slug={slug} dehydratedState={dehydratedState} />
+      <PostViewPage slug={slug} dehydratedState={dehydratedState} />
     </Application>
   );
 }

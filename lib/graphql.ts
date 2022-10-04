@@ -41,21 +41,29 @@ export function getFetcherOptions() {
   };
 }
 
-export function useQuery<Q, V>({
+export type UseQueryProps<Query, Variables> = {
+  client: QueryClient;
+  fetcher: () => Promise<Query>;
+  key: QueryKey;
+  variables: Variables;
+};
+
+export type UseQuery<Query> = {
+  isLoading: boolean;
+  error: Error | null;
+  data: Query | null;
+};
+
+export function useQuery<Query, Variables>({
   client,
   fetcher,
   key,
   variables,
-}: {
-  client: QueryClient;
-  fetcher: () => Promise<Q>;
-  key: QueryKey;
-  variables: V;
-}) {
+}: UseQueryProps<Query, Variables>): UseQuery<Query> {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
-  const [data, setData] = useState<Q | null>(
-    client.getQueryData<Q>(key) || null,
+  const [data, setData] = useState<Query | null>(
+    client.getQueryData<Query>(key) || null,
   );
 
   const firstRun = useRef<boolean>(true);
@@ -70,7 +78,7 @@ export function useQuery<Q, V>({
     (async () => {
       try {
         setIsLoading(true);
-        const newData = await client.fetchQuery<Q>(key, fetcher);
+        const newData = await client.fetchQuery<Query>(key, fetcher);
         setIsLoading(false);
         setError(null);
         setData(newData);

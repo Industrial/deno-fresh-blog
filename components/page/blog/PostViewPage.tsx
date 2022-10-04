@@ -11,12 +11,15 @@ import { css, cx } from "#/lib/emotion.ts";
 import { smUp } from "#/style/breakpoints.ts";
 import { spacing } from "#/style/theme.ts";
 
-export type PostViewProps = {
+export type PostViewPageProps = {
   slug: string;
   dehydratedState: DehydratedState;
 };
 
-export function PostView({ slug, dehydratedState }: PostViewProps) {
+export function PostViewPage({
+  slug,
+  dehydratedState,
+}: PostViewPageProps) {
   const client = createGraphQLClient({ dehydratedState });
   const result = client.getQueryData<PostQuery>(
     usePostQuery.getKey({
