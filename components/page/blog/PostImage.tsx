@@ -30,7 +30,7 @@ export function PostImage({ href, src }: PostImageProps) {
   );
 
   return (
-    <div>
+    <>
       {href
         ? (
           <a
@@ -46,6 +46,6 @@ export function PostImage({ href, src }: PostImageProps) {
           </a>
         )
         : image}
-    </div>
+    </>
   );
 }

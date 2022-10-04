@@ -14,13 +14,20 @@ export type PostListEntryProps = {
 export function PostListEntry({ post }: PostListEntryProps) {
   return (
     <Row>
-      <Column lg={6}>
+      <Column xl={6}>
         <PostImage
           href={`/post/${post.slug}`}
           src="https://loremflickr.com/640/360"
         />
       </Column>
-      <Column lg={6}>
+      <Column
+        xl={6}
+        className={cx(
+          css({
+            flexDirection: "column",
+          }),
+        )}
+      >
         <PostDate date={new Date(post.date_created)} />
         <PostTitle
           href={`/post/${post.slug}`}
