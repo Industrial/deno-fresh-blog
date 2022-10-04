@@ -17,7 +17,7 @@ import {
 import { css, cx } from "#/lib/emotion.ts";
 import { lgUp } from "#/style/breakpoints.ts";
 import { spacing } from "#/style/theme.ts";
-import { Row } from "../components/grid/Row.tsx";
+import { Column, Row } from "#/components/grid/mod.ts";
 
 export type PostListIslandProps = {
   dehydratedState: DehydratedState;
@@ -69,13 +69,15 @@ export default function PostListIsland(
         return <PostListEntry post={entry} />;
       })}
       <Row>
-        <Button
-          variant="primary"
-          onClick={handleButtonClick}
-          disabled={query.isLoading}
-        >
-          Load More
-        </Button>
+        <Column>
+          <Button
+            variant="primary"
+            onClick={handleButtonClick}
+            disabled={query.isLoading}
+          >
+            Load More
+          </Button>
+        </Column>
       </Row>
     </Container>
   );

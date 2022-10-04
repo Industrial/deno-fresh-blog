@@ -81,6 +81,7 @@ export function column({
     "--grid-columns": "var(--grid-columns-xs, --grid-total-columns)",
 
     display: "flex",
+    flexDirection: "column",
     flexBasis: "calc(var(--grid-columns) / var(--grid-total-columns) * 100%)",
     paddingLeft: `var(--grid-gutter-width)`,
     paddingRight: `var(--grid-gutter-width)`,

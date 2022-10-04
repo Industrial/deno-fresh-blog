@@ -6,6 +6,7 @@ import { PostImage } from "#/components/page/blog/PostImage.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
 import { PostTitle } from "#/components/page/blog/PostTitle.tsx";
 import { css, cx } from "#/lib/emotion.ts";
+import { smUp } from "#/style/breakpoints.ts";
 
 export type PostListEntryProps = {
   post: ArrayElement<PostQuery["post"]>;
@@ -20,30 +21,36 @@ export function PostListEntry({ post }: PostListEntryProps) {
           src="https://loremflickr.com/640/360"
         />
       </Column>
-      <Column
-        xl={6}
-        className={cx(
-          css({
-            flexDirection: "column",
-          }),
-        )}
-      >
-        <PostDate date={new Date(post.date_created)} />
-        <PostTitle
-          href={`/post/${post.slug}`}
-          text={post.title}
+      <Column xl={6}>
+        <div
           className={cx(
-            css({}),
+            css({
+              paddingLeft: "0.5vw",
+              paddingRight: "0.5vw",
+              ...smUp({
+                paddingLeft: 0,
+                paddingRight: 0,
+              }),
+            }),
           )}
-        />
-        <BodyText>
-          {String(post.intro)}
-        </BodyText>
-        <BodyText>
-          <a href={`/post/${post.slug}`} className="text-underline">
-            Read more
-          </a>
-        </BodyText>
+        >
+          <PostDate date={new Date(post.date_created)} />
+          <PostTitle
+            href={`/post/${post.slug}`}
+            text={post.title}
+            className={cx(
+              css({}),
+            )}
+          />
+          <BodyText>
+            {String(post.intro)}
+          </BodyText>
+          <BodyText>
+            <a href={`/post/${post.slug}`} className="text-underline">
+              Read more
+            </a>
+          </BodyText>
+        </div>
       </Column>
     </Row>
   );
