@@ -1,5 +1,6 @@
 import { DehydratedState } from "react-query";
 
+import { Column } from "#/components/grid/Column.tsx";
 import { Container } from "#/components/grid/Container.tsx";
 import { PostContent } from "#/components/page/blog/PostContent.tsx";
 import { PostDate } from "#/components/page/blog/PostDate.tsx";
@@ -52,31 +53,33 @@ export function PostViewPage({
         }),
       )}
     >
-      <PostImage src="https://loremflickr.com/640/360" />
-      <PostTitle
-        text={post.title}
-        className={cx(
-          css({
-            marginTop: "1em",
-          }),
-        )}
-      />
-      <PostDate
-        date={new Date(post.date_created)}
-        className={cx(
-          css({
-            marginTop: "1em",
-          }),
-        )}
-      />
-      <PostContent
-        value={String(post.content)}
-        className={cx(
-          css({
-            marginTop: "1em",
-          }),
-        )}
-      />
+      <Column>
+        <PostImage src="https://loremflickr.com/640/360" />
+        <PostTitle
+          text={post.title}
+          className={cx(
+            css({
+              marginTop: "1em",
+            }),
+          )}
+        />
+        <PostDate
+          date={new Date(post.date_created)}
+          className={cx(
+            css({
+              marginTop: "1em",
+            }),
+          )}
+        />
+        <PostContent
+          value={String(post.content)}
+          className={cx(
+            css({
+              marginTop: "1em",
+            }),
+          )}
+        />
+      </Column>
     </Container>
   );
 }

@@ -1,4 +1,4 @@
-import { type Plugin } from "https://deno.land/x/fresh@1.1.1/server.ts?s=Plugin";
+import { type Plugin } from "$fresh/server.ts";
 
 import createEmotionServer from "@emotion/server/create-instance";
 
