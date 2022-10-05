@@ -46,6 +46,7 @@ export function PostListPage({ query, onLoadMore }: PostListPageProps) {
             variant="primary"
             className={cx(
               css({
+                marginTop: "2em",
                 marginLeft: "auto",
                 marginRight: "auto",
                 marginBottom: "2em",

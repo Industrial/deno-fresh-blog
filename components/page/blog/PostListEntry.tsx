@@ -2,6 +2,7 @@ import { ArrayElement } from "#/lib/types.ts";
 import { BodyText } from "#/components/text/BodyText.tsx";
 import { ClassNameProps } from "#/lib/classNames.ts";
 import { Column, Row } from "#/components/grid/mod.ts";
+import { LinkButton } from "#/components/LinkButton.tsx";
 import { PostDate } from "#/components/page/blog/PostDate.tsx";
 import { PostImage } from "#/components/page/blog/PostImage.tsx";
 import { PostQuery } from "#/graphql/generated/client.ts";
@@ -66,11 +67,17 @@ export function PostListEntry({ post, className }: PostListEntryProps) {
           >
             {String(post.intro)}
           </BodyText>
-          <BodyText>
-            <a href={`/post/${post.slug}`} className="text-underline">
+          <div
+            className={cx(
+              css({
+                marginTop: "1em",
+              }),
+            )}
+          >
+            <LinkButton href={`/post/${post.slug}`} variant="text">
               Read more
-            </a>
-          </BodyText>
+            </LinkButton>
+          </div>
         </div>
       </Column>
     </Row>
