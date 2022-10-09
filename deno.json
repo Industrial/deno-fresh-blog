@@ -5,7 +5,7 @@
     "graphql:codegen": "pnpm run graphql:codegen",
     "graphql:codegen:watch": "pnpm run graphql:codegen:watch",
     "install": "npm i -g pnpm && pnpm install",
-    "lint": "deno lint --ignore=./node_modules",
+    "lint": "deno lint --ignore=./node_modules,./graphql/generated",
     "lint:watch": "deno task lint --watch",
     "start": "deno run -A --unstable --watch=static/,routes/,graphql/generated/ dev.ts",
     "test": "deno test -A --unstable --no-check --ignore=./node_modules .",
@@ -22,19 +22,5 @@
       "dom.iterable",
       "dom.asynciterable"
     ]
-  },
-  "fmt": {
-    "files": {
-      "exclude": [
-        "graphql/generated/client.ts"
-      ]
-    }
-  },
-  "lint": {
-    "files": {
-      "exclude": [
-        "graphql/generated/client.ts"
-      ]
-    }
   }
 }
