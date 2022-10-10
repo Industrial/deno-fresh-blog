@@ -9,7 +9,7 @@ export type ButtonProps =
 export function Button({
   children,
   ...props
-}: ButtonProps) {
+}: ButtonProps): JSX.Element {
   return (
     <ButtonBase Component={"button"} {...props}>
       {children}

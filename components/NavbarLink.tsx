@@ -1,3 +1,5 @@
+import { JSX } from "preact";
+
 import { css, cx } from "#/lib/emotion.ts";
 import { color } from "#/style/theme.ts";
 
@@ -7,7 +9,11 @@ export type NavbarLinkProps = {
   isActive: boolean;
 };
 
-export function NavbarLink({ label, href, isActive }: NavbarLinkProps) {
+export function NavbarLink({
+  label,
+  href,
+  isActive,
+}: NavbarLinkProps): JSX.Element {
   return (
     <a
       className={cx(css({

@@ -1,3 +1,4 @@
+import { JSX } from "preact";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { DehydratedState } from "react-query";
 
@@ -7,9 +8,12 @@ export type AboutPageProps = {
   dehydratedState: DehydratedState;
 };
 
-export default function PostListPage(
-  { params, route, url, data }: PageProps<AboutPageProps>,
-) {
+export default function PostListPage({
+  params,
+  route,
+  url,
+  data,
+}: PageProps<AboutPageProps>): JSX.Element {
   const { dehydratedState } = data;
 
   return (

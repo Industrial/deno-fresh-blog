@@ -1,3 +1,4 @@
+import { JSX } from "preact";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { dehydrate, DehydratedState } from "react-query";
 
@@ -9,11 +10,11 @@ import {
 import { createGraphQLClient, getFetcherOptions } from "#/lib/graphql.ts";
 import { Application } from "#/components/Application.tsx";
 
-export type PostListPageProps = {
+export type PostListRouteProps = {
   dehydratedState: DehydratedState;
 };
 
-export const handler: Handlers<PostListPageProps> = {
+export const handler: Handlers<PostListRouteProps> = {
   async GET(_req, ctx) {
     const client = createGraphQLClient();
 
@@ -39,12 +40,12 @@ export const handler: Handlers<PostListPageProps> = {
   },
 };
 
-export default function PostList({
+export default function PostListRoute({
   params,
   route,
   url,
   data,
-}: PageProps<PostListPageProps>) {
+}: PageProps<PostListRouteProps>): JSX.Element {
   const { dehydratedState } = data;
 
   return (

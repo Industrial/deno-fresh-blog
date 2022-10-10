@@ -10,9 +10,12 @@ export type ApplicationProps = ChildrenProps & RouterContextProps & {
   data: DehydratedState;
 };
 
-export function Application(
-  { children, params, route, url }: ApplicationProps,
-) {
+export function Application({
+  children,
+  params,
+  route,
+  url,
+}: ApplicationProps): JSX.Element {
   return (
     <Router.Provider
       value={{

@@ -1,9 +1,11 @@
+import { JSX } from "preact";
+
 import { NavbarLink } from "#/components/NavbarLink.tsx";
 import { Router } from "#/contexts/Router.ts";
 import { css, cx } from "#/lib/emotion.ts";
 import { color, spacing } from "#/style/theme.ts";
 
-export function Navbar() {
+export function Navbar(): JSX.Element {
   return (
     <Router.Consumer>
       {({ route }) => {

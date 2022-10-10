@@ -10,7 +10,7 @@ export type LinkButtonProps =
 export function LinkButton({
   children,
   ...props
-}: LinkButtonProps) {
+}: LinkButtonProps): JSX.Element {
   return (
     <ButtonBase
       className={cx(

@@ -17,9 +17,9 @@ export type PostListIslandProps = {
   dehydratedState: DehydratedState;
 };
 
-export default function PostListIsland(
-  { dehydratedState }: PostListIslandProps,
-) {
+export default function PostListIsland({
+  dehydratedState,
+}: PostListIslandProps): JSX.Element {
   const client = useMemo(() => {
     return createGraphQLClient({ dehydratedState });
   }, [dehydratedState]);

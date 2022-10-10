@@ -14,7 +14,10 @@ export type PostListEntryProps = {
   post: ArrayElement<PostQuery["post"]>;
 } & ClassNameProps;
 
-export function PostListEntry({ post, className }: PostListEntryProps) {
+export function PostListEntry({
+  post,
+  className,
+}: PostListEntryProps): JSX.Element {
   return (
     <Row className={className}>
       <Column xl={6}>

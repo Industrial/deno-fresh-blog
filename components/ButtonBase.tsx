@@ -18,7 +18,7 @@ export function ButtonBase({
   className,
   children,
   ...props
-}: ButtonBaseProps) {
+}: ButtonBaseProps): JSX.Element {
   return (
     <Component
       className={cx(

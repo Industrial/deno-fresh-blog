@@ -1,3 +1,4 @@
+import { JSX } from "preact";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { dehydrate, DehydratedState } from "react-query";
 
@@ -60,7 +61,7 @@ export default function PostView({
   route,
   url,
   data,
-}: PageProps<PostViewPageProps>) {
+}: PageProps<PostViewPageProps>): JSX.Element {
   const { slug, dehydratedState } = data;
 
   return (

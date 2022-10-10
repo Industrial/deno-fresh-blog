@@ -13,7 +13,10 @@ export type PostListPageProps = {
   onLoadMore: () => void;
 };
 
-export function PostListPage({ query, onLoadMore }: PostListPageProps) {
+export function PostListPage({
+  query,
+  onLoadMore,
+}: PostListPageProps): JSX.Element {
   function handleLoadMore() {
     onLoadMore();
   }

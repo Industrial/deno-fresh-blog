@@ -20,7 +20,7 @@ export type PostViewPageProps = {
 export function PostViewPage({
   slug,
   dehydratedState,
-}: PostViewPageProps) {
+}: PostViewPageProps): JSX.Element {
   const client = createGraphQLClient({ dehydratedState });
   const result = client.getQueryData<PostQuery>(
     usePostQuery.getKey({
@@ -40,7 +40,7 @@ export function PostViewPage({
   const post = result?.post[0];
 
   if (!post) {
-    return null;
+    return <></>;
   }
 
   return (

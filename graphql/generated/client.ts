@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -34,6 +34,22 @@ export type Scalars = {
   Date: any;
   GraphQLStringOrFloat: any;
   JSON: any;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  create_contact_item?: Maybe<Scalars['Boolean']>;
+  create_contact_items?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreate_Contact_ItemArgs = {
+  data: Create_Contact_Input;
+};
+
+
+export type MutationCreate_Contact_ItemsArgs = {
+  data?: InputMaybe<Array<Create_Contact_Input>>;
 };
 
 export type Query = {
@@ -172,6 +188,14 @@ export type Count_Function_Filter_Operators = {
 export type Count_Functions = {
   __typename?: 'count_functions';
   count?: Maybe<Scalars['Int']>;
+};
+
+export type Create_Contact_Input = {
+  content: Scalars['String'];
+  date_created?: InputMaybe<Scalars['Date']>;
+  email: Scalars['String'];
+  id?: InputMaybe<Scalars['ID']>;
+  phonenumber?: InputMaybe<Scalars['String']>;
 };
 
 export type Date_Filter_Operators = {
@@ -317,6 +341,15 @@ export type String_Filter_Operators = {
   _starts_with?: InputMaybe<Scalars['String']>;
 };
 
+export type CreateContactMutationVariables = Exact<{
+  email: Scalars['String'];
+  phonenumber?: InputMaybe<Scalars['String']>;
+  content: Scalars['String'];
+}>;
+
+
+export type CreateContactMutation = { __typename?: 'Mutation', create_contact_item?: boolean | null };
+
 export type PostQueryVariables = Exact<{
   filter?: InputMaybe<Post_Filter>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -330,6 +363,26 @@ export type PostQueryVariables = Exact<{
 export type PostQuery = { __typename?: 'Query', post: Array<{ __typename?: 'post', id: string, title: string, slug: string, intro?: string | null, content?: string | null, status?: string | null, date_created?: any | null }> };
 
 
+export const CreateContactDocument = `
+    mutation createContact($email: String!, $phonenumber: String, $content: String!) {
+  create_contact_item(
+    data: {email: $email, phonenumber: $phonenumber, content: $content}
+  )
+}
+    `;
+export const useCreateContactMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(
+      dataSource: { endpoint: string, fetchParams?: RequestInit },
+      options?: UseMutationOptions<CreateContactMutation, TError, CreateContactMutationVariables, TContext>
+    ) =>
+    useMutation<CreateContactMutation, TError, CreateContactMutationVariables, TContext>(
+      ['createContact'],
+      (variables?: CreateContactMutationVariables) => fetcher<CreateContactMutation, CreateContactMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, CreateContactDocument, variables)(),
+      options
+    );
+useCreateContactMutation.fetcher = (dataSource: { endpoint: string, fetchParams?: RequestInit }, variables: CreateContactMutationVariables) => fetcher<CreateContactMutation, CreateContactMutationVariables>(dataSource.endpoint, dataSource.fetchParams || {}, CreateContactDocument, variables);
 export const PostDocument = `
     query Post($filter: post_filter, $limit: Int, $offset: Int, $page: Int, $search: String, $sort: [String]) {
   post(

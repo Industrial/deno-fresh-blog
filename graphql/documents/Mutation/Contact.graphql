@@ -1,0 +1,11 @@
+mutation createContact(
+  $email: String!
+  $phonenumber: String
+  $content: String!
+) {
+  create_contact_item(data:{
+    email: $email
+    phonenumber: $phonenumber
+    content: $content
+  })
+}

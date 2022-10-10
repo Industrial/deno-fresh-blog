@@ -96,3 +96,46 @@ export function useQuery<Query, Variables>({
     data,
   };
 }
+
+export type UseMutationProps = {
+  client: QueryClient;
+};
+
+export type UseMutation<Mutation, Variables> = {
+  isLoading: boolean;
+  error: Error | null;
+  mutate: (variables: Variables) => Promise<Mutation | null>;
+};
+
+export function useMutation<Mutation, Variables>(
+  { client }: UseMutationProps,
+): UseMutation<Mutation, Variables> {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (variables: Variables) => {
+    try {
+      setIsLoading(true);
+      const newData = await client.executeMutation<
+        Mutation,
+        unknown,
+        Variables
+      >({
+        variables,
+      });
+      setIsLoading(false);
+      setError(null);
+      return newData;
+    } catch (error: unknown) {
+      setIsLoading(false);
+      setError(error as Error);
+      return null;
+    }
+  };
+
+  return {
+    isLoading,
+    error,
+    mutate,
+  };
+}

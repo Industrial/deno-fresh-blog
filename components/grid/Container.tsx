@@ -2,6 +2,7 @@ import { ChildrenProps } from "#/lib/types.ts";
 import { ClassNameProps } from "#/lib/classNames.ts";
 import { container } from "#/style/grid.ts";
 import { css, cx } from "#/lib/emotion.ts";
+import { JSX } from "https://esm.sh/v96/preact@10.11.1/jsx-runtime/src/index.d.ts";
 
 export type ContainerProps =
   & {
@@ -18,7 +19,7 @@ export function Container({
   gutterWidth,
   className,
   children,
-}: ContainerProps) {
+}: ContainerProps): JSX.Element {
   return (
     <div
       className={cx(
