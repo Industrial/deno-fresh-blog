@@ -1,5 +1,5 @@
 import { injectGlobal } from "#/lib/emotion.ts";
-import { mdUp, smUp } from "#/style/breakpoints.ts";
+import { smUp } from "#/style/breakpoints.ts";
 
 injectGlobal({
   // https://piccalil.li/blog/a-modern-css-reset/
@@ -69,7 +69,6 @@ injectGlobal({
 
 injectGlobal({
   ":root": {
-    "--gutter": "20px",
     "--t0": "2.67rem",
     "--t1": "2.67rem",
     "--t2": "2rem",
@@ -80,7 +79,6 @@ injectGlobal({
     "--p3": "1rem",
 
     ...smUp({
-      "--gutter": "3vw",
       "--t0": "4.5rem",
       "--t1": "4rem",
       "--t2": "2.5rem",
@@ -90,12 +88,6 @@ injectGlobal({
       "--p2": "1rem",
       "--p3": "0.75rem",
     }),
-
-    ...mdUp({
-      "--gutter": "3.125rem",
-    }),
-    // ...lgUp({}),
-    // ...xlUp({}),
   },
 
   "*": {

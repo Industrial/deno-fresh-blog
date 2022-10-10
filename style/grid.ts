@@ -13,9 +13,9 @@ injectGlobal({
     "--grid-container-max-width": `${breakpoints.lg.upper}px`,
     "--grid-total-columns": 12,
 
-    "--grid-gutter-width": `0px`,
+    "--grid-gutter-width": `1.5vw`,
     ...smUp({
-      "--grid-gutter-width": `1.5vw`,
+      "--grid-gutter-width": `3vw`,
     }),
   },
 });
@@ -82,8 +82,8 @@ export function column({
     display: "flex",
     flexDirection: "column",
     flexBasis: "calc(var(--grid-columns) / var(--grid-total-columns) * 100%)",
-    paddingLeft: `var(--grid-gutter-width)`,
-    paddingRight: `var(--grid-gutter-width)`,
+    paddingLeft: `calc(var(--grid-gutter-width) / 2)`,
+    paddingRight: `calc(var(--grid-gutter-width) / 2)`,
 
     ...smUp({
       "--grid-columns":
